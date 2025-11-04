@@ -1,0 +1,130 @@
+.text-image {
+	h4:not(:first-of-type) {
+		margin-top: 32px;
+		/* Adjust the margin value as needed */
+	}
+
+	h5 {
+		margin-top: 32px;
+	}
+
+	h6 {
+		font-size: 18px !important;
+		margin-top: 8px;
+		margin-bottom: 16px;
+	}
+
+	.__content {
+		p {
+			padding-bottom: 8px;
+		}
+
+		p:last-child {
+			padding-bottom: 0px;
+		}
+	}
+
+	b,
+	strong {
+		margin-top: 24px;
+	}
+
+	.__content {
+		ul {
+			list-style: circle;
+			padding-left: 24px;
+			margin-top: 8px;
+			margin-bottom: 16px;
+
+			::marker {
+				color: var(--s-600);
+			}
+		}
+
+		/* ul li {
+		position: relative;
+		padding-left: 30px;
+	}
+
+	ul li::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0.4em;
+		width: 18px;
+		height: 18px;
+		background-image: url('/path/to/icon.svg');
+		background-size: contain;
+		background-repeat: no-repeat;
+	} */
+	}
+}
+
+/*--- ISO ---*/
+
+.iso {
+	img.__bg--first {
+		left: 50%;
+		top: -60px;
+	}
+
+	img.__bg--second {
+		left: 0%;
+		bottom: 0px;
+		mix-blend-mode: soft-light;
+		opacity: 0.5;
+	}
+}
+
+/*---- LG --*/
+@media only screen and (max-width: 1024px) {
+	.iso {
+		& img.__bg--first {
+			top: auto;
+			left: auto;
+			right: -2%;
+			bottom: 50%;
+			width: 160px;
+		}
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	.iso {
+		& img.__bg--first {
+			bottom: 33%;
+		}
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.iso {
+		& img.__bg--first {
+			bottom: -2%;
+		}
+	}
+}
+
+/*--- OFFER ABOUT ---*/
+
+.offer-about {
+	.__img img {
+		width: 70%;
+		margin-left: auto;
+	}
+
+	h2 {
+		font-size: 36px !important;
+		line-height: 3rem;
+	}
+}
+
+/*---- LG --*/
+@media only screen and (max-width: 1024px) {
+	.offer-about {
+		.__img img {
+			width: 100%;
+			margin-left: 0;
+		}
+	}
+}
