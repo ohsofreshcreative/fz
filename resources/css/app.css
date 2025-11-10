@@ -5,7 +5,19 @@
 
 @import "../css/variables.scss";
 
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
+/*-- USED ---*/
 @import '../css/blocks/hero.scss';
+@import '../css/blocks/counter.scss';
+@import '../css/blocks/home-about.scss';
+@import '../css/blocks/cards.scss';
+@import '../css/blocks/text.scss';
+@import '../css/blocks/partners-block.scss';
+
+/*-- NOT USED --*/
 @import '../css/blocks/hero-sub.scss';
 @import '../css/blocks/hero-offer.scss';
 
@@ -24,7 +36,3 @@
 @import '../css/blocks/steps.scss';
 @import '../css/blocks/path.scss';
 @import '../css/blocks/contact.scss';
-
-@import 'swiper/css';
-@import 'swiper/css/navigation';
-@import 'swiper/css/pagination';

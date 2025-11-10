@@ -11,7 +11,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 @endphp
 
 @php
-$backgroundImage = !empty($bottom['image']['url']) ? "linear-gradient(0deg, rgba(43, 23, 106, 1) 0%, rgba(43, 23, 106, 0.10) 100%), url({$bottom['image']['url']})" : '';
+$backgroundImage = !empty($bottom['image']['url']) ? "linear-gradient(90deg, rgba(0, 23, 82, 1) 40%, rgba(0, 23, 82, 0.3) 100%), url({$bottom['image']['url']})" : '';
 @endphp
 
 <!-- bottom-block -->
@@ -19,11 +19,11 @@ $backgroundImage = !empty($bottom['image']['url']) ? "linear-gradient(0deg, rgba
 <section data-gsap-anim="section" class="cta-bottom relative overflow-hidden -smt bg-dark {{ $sectionClass }}" style="background-image: {{ $backgroundImage }}; background-size: cover; background-position: 50%;">
 	<div class="c-main py-40">
 		<div class="w-full md:w-1/2">
-			<p class="subtitle-s">{{ strip_tags($bottom['subtitle']) }}</p>
-			<h2 data-gsap-element="header" class="text-white mt-4">{{ $bottom['title'] }}</h2>
-			<div data-gsap-element="txt" class="mt-2 text-white">
+			<p data-gsap-element="subtitle" class="subtitle-s">{{ strip_tags($bottom['subtitle']) }}</p>
+			<h2 data-gsap-element="header" class="text-white mt-2">{{ $bottom['title'] }}</h2>
+			<h2 data-gsap-element="txt" class="secondary mt-2">
 				{!! $bottom['txt'] !!}
-			</div>
+			</h2>
 			@if (!empty($bottom['button']))
 			<a data-gsap-element="btn" class="second-btn m-btn" href="{{ $bottom['button']['url'] }}">{{ $bottom['button']['title'] }}</a>
 			@endif

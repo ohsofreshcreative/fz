@@ -1,57 +1,56 @@
 @php
 $sectionClass = '';
 $sectionClass .= $flip ? ' order-flip' : '';
-
-$sectionId = $block->data['id'] ?? null;
-  $customClass = $block->data['className'] ?? '';
+$sectionClass .= $wide ? ' wide' : '';
+$sectionClass .= $nomt ? ' !mt-0' : '';
+$sectionClass .= $gap ? ' wider-gap' : '';
+$sectionClass .= $lightbg ? ' section-light' : '';
+$sectionClass .= $graybg ? ' section-gray' : '';
+$sectionClass .= $whitebg ? ' section-white' : '';
+$sectionClass .= $brandbg ? ' section-brand' : '';
 @endphp
 
-<section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="home-about {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
-	<div class="">
-		@if (!empty($about1['image']))
-		<img class="c-main-wide object-cover w-full __img img-xl" src="{{ $about1['image']['url'] }}" alt="{{ $about1['image']['alt'] ?? '' }}">
-		@endif
+<!--- home-about --->
 
-		<div class="c-main">
-		<div class="grid grid-cols-1 md:grid-cols-2 justify-center items-center -mt-[180px]">
-			<div></div>
+<section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="home-about -smt {{ $sectionClass }} {{ $section_class }}">
+
+	<div class="c-main relative grid grid-cols-1 md:grid-cols-2 gap-8">
+
+		<div class="__imgs relative order1">
+			@if (!empty($g_about['image1']))
+			<img class="relative w-3/4 ml-auto" src="{{ $g_about['image1']['url'] }}" alt="{{ $g_about['image1']['alt'] ?? '' }}">
+			@endif
+			@if (!empty($g_about['image2']))
+			<img class="w-3/4 -top-20" src="{{ $g_about['image2']['url'] }}" alt="{{ $g_about['image2']['alt'] ?? '' }}">
+			@endif
+		</div>
+
+		<div class="__content order2">
+
 			<div class="bg-primary px-14 py-14">
-				@if (!empty($about1['title']))
-				<p class="font-bold uppercase font-header">{{ strip_tags($about1['title']) }}</p>
-				@endif
+				<p data-gsap-element="subtitle" class="__subtitle subtitle-s">{{ $g_about['subtitle'] }}</p>
+				<h2 data-gsap-element="header" class="text-white">{{ $g_about['header'] }}</h2>
 
-				@if (!empty($about1['content']))
-				<h5 class="mt-5 font-medium __txt">{{ strip_tags($about1['content']) }}</h5>
-				@endif
+				<div data-gsap-element="txt" class="text-white mt-2">
+					{!! $g_about['txt'] !!}
+				</div>
+				<div class="flex gap-8 mt-10">
+					<div data-gsap-element="item" class="text-white">
+						<b class="secondary">Gdzie?</b>
+						<p>{!! $g_about['where'] !!}</p>
+					</div>
+					<div data-gsap-element="item" class="text-white">
+						<b class="secondary">Kiedy?</b>
+						<p>{!! $g_about['when'] !!}</p>
+					</div>
+				</div>
 
-				<a href="#more" class="block mt-10">
-					<img src="/wp-content/uploads/2025/05/arrow-down.svg" />
-				</a>
+				@if (!empty($g_about['button']))
+				<a data-gsap-element="btn" class="second-btn m-btn" href="{{ $g_about['button']['url'] }}">{{ $g_about['button']['title'] }}</a>
+				@endif
 			</div>
 		</div>
-		</div>
-	</div>
 
-	<div id="more" class="c-main items-center justify-center grid grid-cols-1 md:grid-cols-2">
-		@if (!empty($about2['image2']))
-		<img class="img-xl" src="{{ $about2['image2']['url'] }}" alt="{{ $about2['image2']['alt'] ?? '' }}">
-		@endif
-
-		<div class="__content ml-14">
-			@if (!empty($about2['title2']))
-			<h2 class="m-title">{{ $about2['title2'] }}</h2>
-			@endif
-
-			@if (!empty($about2['content2']))
-			<div class="__txt">{!! $about2['content2'] !!}</div>
-			@endif
-
-			@if (!empty($about2['cta2']))
-			<a class="main-btn m-btn" href="{{ $about2['cta2']['url'] }}" target="{{ $about2['cta2']['target'] ?? '_self' }}">
-				{{ $about2['cta2']['title'] }}
-			</a>
-			@endif
-		</div>
 	</div>
 
 </section>

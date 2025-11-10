@@ -14,45 +14,34 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 	<div class="__wrapper c-main">
 		<div class="">
 
-			@if (!empty($tiles['title']))
-			<h2 class="mb-10">{{ strip_tags($tiles['title']) }}</h2>
+			<div class="__top grid grid-cols-1 md:grid-cols-2 items-end gap-8">
+				<div class="__header">
+					<p data-gsap-element="subtitle" class="__subtitle subtitle-s">{{ strip_tags($g_cards['subtitle']) }}</p>
+					<h2 data-gsap-element="header" class="text-white">{{ strip_tags($g_cards['header']) }}</h2>
+				</div>
+				<div data-gsap-element="txt" class="text-2xl text-white">
+					{!! $g_cards['text'] !!}
+				</div>
+			</div>
+
+			@if (!empty($g_cards['r_cards']))
+            @php
+                $gridCols = $grid_cols ?? 4; // Użyj 4 jako domyślnej wartości, jeśli nic nie wybrano
+                $gridClass = 'grid-cols-1 lg:grid-cols-' . $gridCols;
+            @endphp
+
+			<div data-gsap-element="stagger" class="grid {{ $gridClass }} gap-8 mt-14">
+				@foreach ($g_cards['r_cards'] as $item)
+				<div class="__card relative bg-secondary b-shadow p-8">
+					<img class="mb-6" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}" />
+					<h6 class="m-title text-white">{{ $item['header'] }}</h6>
+					<p class="text-white">{{ $item['text'] }}</p>
+				</div>
+				@endforeach
+			</div>
 			@endif
-
-			@if (!empty($tiles['repeater']))
-    @php
-        $itemCount = count($tiles['repeater']);
-        $gridCols = $itemCount;
-
-        if ($itemCount == 4) {
-            $gridCols = 2;
-        } elseif ($itemCount > 4) {
-            $gridCols = 2; // Or handle it differently if there are more than 4 items
-        }
-
-        $gridClass = 'grid-cols-1'; // Default to 1 column
-        if ($gridCols > 1) {
-            $gridClass = 'grid-cols-1 lg:grid-cols-' . $gridCols;
-        }
-    @endphp
-
-    <div class="grid {{ $gridClass }} gap-8">
-        @foreach ($tiles['repeater'] as $item)
-            <div class="__card relative b-border p-8">
-                <img class="mb-6" src="{{ $item['card_image']['url'] }}" alt="{{ $item['card_image']['alt'] ?? '' }}" />
-                <h6 class="m-title">{{ $item['card_title'] }}</h6>
-                <p class="">{{ $item['card_txt'] }}</p>
-
-                <div class="absolute top-0 right-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="87" height="87" viewBox="0 0 87 87" fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M86.9104 86.6418V0.431902H0.700457L66.9906 19.8442L86.9104 86.6418Z" fill="#E30613" />
-                    </svg>
-                </div>
-            </div>
-        @endforeach
-    </div>
-@endif
 
 		</div>
 	</div>
 
-</section>
+</section> 

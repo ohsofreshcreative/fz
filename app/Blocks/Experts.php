@@ -5,14 +5,14 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Cards extends Block
+class Experts extends Block
 {
-	public $name = 'Kafelki';
-	public $description = 'cards';
-	public $slug = 'cards';
+	public $name = 'Eksperci';
+	public $description = 'experts';
+	public $slug = 'experts';
 	public $category = 'formatting';
-	public $icon = 'ellipsis';
-	public $keywords = ['cards', 'kafelki'];
+	public $icon = 'image-flip-horizontal';
+	public $keywords = ['experts', 'eksperci'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
@@ -22,73 +22,51 @@ class Cards extends Block
 
 	public function fields()
 	{
-		$cards = new FieldsBuilder('cards');
+		$experts = new FieldsBuilder('experts');
 
-		$cards
-			->setLocation('block', '==', 'acf/cards') // ważne!
+		$experts
+			->setLocation('block', '==', 'acf/experts') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Kafelki',
+				'label' => 'Eksperci',
 				'open' => false,
 				'multi_expand' => true,
 			])
 			/*--- FIELDS ---*/
 			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('g_cards', ['label' => ''])
+			->addGroup('g_experts', ['label' => ''])
 
 			->addText('subtitle', ['label' => 'Tytuł'])
-			->addText('header', ['label' => 'Nagłówek'])
-			->addTextarea('text', [
-				'label' => 'Opis',
-				'rows' => 2,
-				'new_lines' => 'br',
+			->addText('header', ['label' => 'Tytuł'])
+			->addWysiwyg('txt', [
+				'label' => 'Treść',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
+			])
+			->addLink('button', [
+				'label' => 'Przycisk',
+				'return_format' => 'array',
 			])
 
-			->addRepeater('r_cards', [
-				'label' => 'Kafelki',
-				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 1,
-				'max' => 4,
-				'button_label' => 'Dodaj kafelek'
-			])
-			->addImage('image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
-			])
-			->addText('header', [
-				'label' => 'Nagłówek',
-			])
-			->addTextarea('text', [
-				'label' => 'Opis',
-				'rows' => 4,
-				'new_lines' => 'br',
-			])
-			->endRepeater()
+			->addGallery('gallery', [
+                'label' => 'Galeria',
+                'min' => 1,
+                'max' => 20,
+                'insert' => 'append',
+                'library' => 'all',
+                'mime_types' => 'jpg,jpeg,png,gif',
+            ])
 
 			->endGroup()
 
+			
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
-			->addSelect('grid_cols', [
-                'label' => 'Liczba kolumn',
-                'choices' => [
-                    '2' => '2',
-                    '3' => '3',
-                    '4' => '4',
-                ],
-                'default_value' => '4',
-                'allow_null' => 0,
-                'multiple' => 0,
-                'ui' => 0,
-                'ajax' => 0,
-                'return_format' => 'value',
-                'placeholder' => '',
-            ])
 			->addText('section_id', [
 				'label' => 'ID',
 			])
@@ -144,15 +122,14 @@ class Cards extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $cards;
+		return $experts;
 	}
 
 	public function with()
 	{
 		return [
-			'g_cards' => get_field('g_cards'),
-			'r_cards' => get_field('r_cards'),
-			'grid_cols' => get_field('grid_cols'),
+			'g_experts' => get_field('g_experts'),
+			'gallery' => get_field('g_experts')['gallery'] ?? [],
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
 			'flip' => get_field('flip'),

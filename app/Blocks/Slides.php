@@ -7,7 +7,7 @@ use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class Slides extends Block
 {
-	public $name = 'Slider - Kafelki';
+	public $name = 'Slider';
 	public $description = 'slides';
 	public $slug = 'slides';
 	public $category = 'formatting';
@@ -31,7 +31,7 @@ class Slides extends Block
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Slider - Kafelki',
+				'label' => 'Slider',
 				'open' => false,
 				'multi_expand' => true,
 			])
@@ -48,15 +48,15 @@ class Slides extends Block
 				'max' => 10,
 				'button_label' => 'Dodaj kafelek'
 			])
-			->addImage('card_image', [
+			->addImage('image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
-			->addText('card_title', [
+			->addText('title', [
 				'label' => 'Nagłówek',
 			])
-			->addTextarea('card_txt', [
+			->addTextarea('txt', [
 				'label' => 'Opis',
 				'rows' => 4,
 				'new_lines' => 'br',

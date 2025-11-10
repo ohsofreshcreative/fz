@@ -36,12 +36,7 @@ class Bottom extends Field
 			])
 			->addText('subtitle', ['label' => 'Śródtytuł'])
 			->addText('title', ['label' => 'Tytuł'])
-			->addWysiwyg('txt', [
-				'label' => 'Treść',
-				'tabs' => 'all', // 'visual', 'text', 'all'
-				'toolbar' => 'full', // 'basic', 'full'
-				'media_upload' => true,
-			])
+			->addText('txt', ['label' => 'Tekst'])
 			->addLink('button', [
 				'label' => 'Przycisk',
 				'return_format' => 'array',

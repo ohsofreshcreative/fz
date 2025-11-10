@@ -26,6 +26,8 @@ class ThemeServiceProvider extends SageServiceProvider
 	{
 		parent::boot();
 
+		/*--- CUSTOM POST TYPES ---*/
+
 		// CUSTOM POST TYPE OFERTA
 		add_action('init', function () {
 			register_post_type('offer', [
@@ -63,7 +65,8 @@ class ThemeServiceProvider extends SageServiceProvider
 			]);
 		});
 
-		// USATAWIENIA MOTYWU
+		/*--- OPTIONS PAGES ---*/
+
 		add_action('acf/init', function () {
 			if (function_exists('acf_add_options_page')) {
 				acf_add_options_page([
@@ -83,9 +86,9 @@ class ThemeServiceProvider extends SageServiceProvider
 				]);
 
 				acf_add_options_page([
-					'page_title' => 'Obszar działania',
-					'menu_title' => 'Obszar działania',
-					'menu_slug'  => 'o-area',
+					'page_title' => 'Partnerzy',
+					'menu_title' => 'Partnerzy',
+					'menu_slug'  => 'partners',
 					'capability' => 'edit_posts',
 					'redirect'   => false,
 				]);

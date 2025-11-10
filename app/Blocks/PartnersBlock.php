@@ -5,85 +5,48 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class HomeAbout extends Block
+class PartnersBlock extends Block
 {
-	public $name = 'Strona główna - O nas';
-	public $description = 'home-about';
-	public $slug = 'home-about';
+	public $name = 'Partnerzy';
+	public $description = 'partners-block';
+	public $slug = 'partners-block'; 
 	public $category = 'formatting';
-	public $icon = 'screenoptions';
-	public $keywords = ['O nas', 'Strona glowna'];
+	public $icon = 'email';
+	public $keywords = ['offer', 'cards', 'oferta', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
 		'jsx' => true,
+		'multiple' => true,
 		'anchor' => true,
 		'customClassName' => true,
 	];
 
+	/**
+	 * The block field group.
+	 *
+	 * @return array
+	 */
 	public function fields()
 	{
-		$home_about = new FieldsBuilder('home-about');
+		$PartnersBlock = new FieldsBuilder('partners_block');
 
-		$home_about
-			->setLocation('block', '==', 'acf/home-about') // ważne!
+		$PartnersBlock
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Strona główna - O nas',
+				'label' => 'Partnerzy',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- GRUPA #1 ---*/
 			->addTab('Elementy', ['placement' => 'top'])
-			->addGroup('g_about', ['label' => ''])
-			->addImage('image1', [
-				'label' => 'Obraz #1',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'thumbnail',
-			])
-			->addImage('image2', [
-				'label' => 'Obraz #2',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'thumbnail',
-			])
-			->addText('subtitle', ['label' => 'Tytuł'])
-			->addText('header', ['label' => 'Nagłówek'])
-			->addWysiwyg('txt', [
-				'label' => 'Treść',
-				'tabs' => 'all', // 'visual', 'text', 'all'
-				'toolbar' => 'full', // 'basic', 'full'
-				'media_upload' => true,
-				'wpautop' => false,
-			])
-			->addTextarea('where', [
-				'label' => 'Gdzie',
-				'rows' => 3,
-				'new_lines' => 'br',
-			])->addTextarea('when', [
-				'label' => 'Kiedy',
-				'rows' => 3,
-				'new_lines' => 'br',
-			])
-			->addLink('button', [
-				'label' => 'Przycisk',
-				'return_format' => 'array',
-			])
-			->endGroup()
-
-
+			->addMessage('Edycja', 'Pole edytujemy klikajac w menu panelu administratora "Partnerzy".')
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
-			->addText('section_id', [
-				'label' => 'ID',
-			])
-			->addText('section_class', [
-				'label' => 'Dodatkowe klasy CSS',
-			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
 				'ui' => 1,
@@ -133,17 +96,18 @@ class HomeAbout extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-
-
-		return $home_about;
+		return $PartnersBlock->build();
 	}
 
+	/**
+	 * Data to be passed to the block before rendering.
+	 *
+	 * @return array
+	 */
 	public function with()
 	{
 		return [
-			'g_about' => get_field('g_about'),
-			'section_id' => get_field('section_id'),
-			'section_class' => get_field('section_class'),
+			'bottom' => get_field('bottom', 'option'),
 			'flip' => get_field('flip'),
 			'wide' => get_field('wide'),
 			'nomt' => get_field('nomt'),

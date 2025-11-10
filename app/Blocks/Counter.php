@@ -5,90 +5,51 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Cards extends Block
+class Counter extends Block
 {
-	public $name = 'Kafelki';
-	public $description = 'cards';
-	public $slug = 'cards';
+	public $name = 'Licznik czasu';
+	public $description = 'counter';
+	public $slug = 'counter';
 	public $category = 'formatting';
-	public $icon = 'ellipsis';
-	public $keywords = ['cards', 'kafelki'];
+	public $icon = 'clock';
+	public $keywords = ['licznik', 'czas'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
 		'jsx' => true,
+		'anchor' => true,
+		'customClassName' => true,
 	];
 
 	public function fields()
 	{
-		$cards = new FieldsBuilder('cards');
+		$counter = new FieldsBuilder('counter');
 
-		$cards
-			->setLocation('block', '==', 'acf/cards') // ważne!
+		$counter
+			->setLocation('block', '==', 'acf/counter') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Kafelki',
+				'label' => 'Licznik czasu',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- FIELDS ---*/
-			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('g_cards', ['label' => ''])
-
-			->addText('subtitle', ['label' => 'Tytuł'])
-			->addText('header', ['label' => 'Nagłówek'])
-			->addTextarea('text', [
-				'label' => 'Opis',
-				'rows' => 2,
-				'new_lines' => 'br',
+			/*--- GROUP ---*/
+			->addTab('Elementy', ['placement' => 'top'])
+			->addGroup('g_counter', ['label' => ''])
+			->addDatePicker('date', [
+				'label' => 'Data',
+				'display_format' => 'd.m.Y',
+				'return_format' => 'Y-m-d',
 			])
-
-			->addRepeater('r_cards', [
-				'label' => 'Kafelki',
-				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 1,
-				'max' => 4,
-				'button_label' => 'Dodaj kafelek'
-			])
-			->addImage('image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
-			])
-			->addText('header', [
-				'label' => 'Nagłówek',
-			])
-			->addTextarea('text', [
-				'label' => 'Opis',
-				'rows' => 4,
-				'new_lines' => 'br',
-			])
-			->endRepeater()
-
 			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
-			->addSelect('grid_cols', [
-                'label' => 'Liczba kolumn',
-                'choices' => [
-                    '2' => '2',
-                    '3' => '3',
-                    '4' => '4',
-                ],
-                'default_value' => '4',
-                'allow_null' => 0,
-                'multiple' => 0,
-                'ui' => 0,
-                'ajax' => 0,
-                'return_format' => 'value',
-                'placeholder' => '',
-            ])
 			->addText('section_id', [
 				'label' => 'ID',
 			])
@@ -144,15 +105,13 @@ class Cards extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $cards;
+		return $counter;
 	}
 
 	public function with()
 	{
 		return [
-			'g_cards' => get_field('g_cards'),
-			'r_cards' => get_field('r_cards'),
-			'grid_cols' => get_field('grid_cols'),
+			'g_counter' => get_field('g_counter'),
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
 			'flip' => get_field('flip'),

@@ -29,7 +29,7 @@ use App\Walkers\MobileDropdownWalker;
 
 			<div class="">
 				<a href="/kontakt/" class="block w-full white-btn-s">
-					Umów konsultację
+					Zarejestruj się
 				</a>
 			</div>
 	</div>

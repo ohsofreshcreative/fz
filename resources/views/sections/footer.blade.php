@@ -11,10 +11,10 @@
 	</div>
 	</div>
 
-	<div class="c-main flex flex-col md:flex-row justify-between gap-6 py-10 footer-bottom">
+	<div class="c-main footer-bottom text-white flex flex-col md:flex-row justify-between gap-6 py-10 ">
 		<p class="">Copyright ©2025 <?php echo get_bloginfo('name'); ?>. All Rights Reserved</p>
 		<p class="flex gap-2">Designed &amp; Developed by
-			<a target="_blank" href="https://www.ohsofresh.pl" title="OhSoFresh"><img class="oh" src="/wp-content/themes/mk/resources/images/ohsofresh.svg"></a>
+			<a target="_blank" href="https://www.ohsofresh.pl" title="OhSoFresh"><img class="oh" src="/wp-content/themes/fz/resources/images/ohsofresh.svg"></a>
 		</p>
 	</div>
 	</div>
