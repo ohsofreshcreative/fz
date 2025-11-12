@@ -63,6 +63,13 @@ add_filter('theme_file_path', function ($path, $file) {
  * @return void
  */
 add_action('after_setup_theme', function () {
+
+	// Dodaj wsparcie dla WooCommerce
+	add_theme_support('woocommerce');
+	add_theme_support('wc-product-gallery-zoom');
+	add_theme_support('wc-product-gallery-lightbox');
+	add_theme_support('wc-product-gallery-slider');
+
 	/**
 	 * Disable full-site editing support.
 	 *
@@ -130,6 +137,16 @@ add_action('after_setup_theme', function () {
 	add_theme_support('customize-selective-refresh-widgets');
 }, 20);
 
+/*--- WOOCOMMERCE PHP FILES ---*/
+
+array_map(function ($file) {
+  require_once $file;
+}, array_merge(
+  glob(get_theme_file_path('app/Woo/*.php')) ?: [],
+  glob(get_theme_file_path('app/Woo/*/*.php')) ?: []
+));
+
+
 /**
  * Register the theme sidebars.
  *
@@ -188,3 +205,132 @@ add_filter('acf/fields/wysiwyg/settings', function ($settings) {
 
     return $settings;
 });
+
+/////////////////////////
+/////////////////////////
+/*--- REGISTRATION ---*/
+/////////////////////////
+/////////////////////////
+
+
+add_filter('woocommerce_product_data_tabs', function ($tabs) {
+    $tabs['custom_options_tab'] = [
+        'label' => 'Rejestracja',
+        'target' => 'custom_options_product_data',
+        'class' => ['show_if_simple', 'show_if_variable'],
+        'priority' => 80,
+    ];
+    return $tabs;
+});
+
+add_action('woocommerce_product_data_panels', function () {
+    echo '<div id="custom_options_product_data" class="panel woocommerce_options_panel">';
+        echo '<div class="options_group group_wrapper">';
+            echo '<div class="group_wrapper_title">Ustawienia pól rejestracji</div>';
+
+            echo '<div class="collapsible-content">';
+                woocommerce_wp_text_input([
+                    'id' => '_custom_options_heading',
+                    'label' => 'Nagłówek sekcji opcji',
+                    'desc_tip' => true,
+                    'description' => 'Wprowadź tekst, który pojawi się nad opcjami na stronie produktu.',
+                    'wrapper_class' => 'form-field-wide',
+                ]);
+
+                woocommerce_wp_text_input([
+                    'id' => '_custom_option_1_label',
+                    'label' => 'Etykieta opcji 1',
+                    'wrapper_class' => 'form-field-wide',
+                ]);
+                woocommerce_wp_text_input([
+                    'id' => '_custom_option_1_price',
+                    'label' => 'Cena opcji 1',
+                    'data_type' => 'price',
+                    'wrapper_class' => 'form-field-wide',
+                ]);
+
+                woocommerce_wp_text_input([
+                    'id' => '_custom_option_2_label',
+                    'label' => 'Etykieta opcji 2',
+                    'wrapper_class' => 'form-field-wide',
+                ]);
+                woocommerce_wp_text_input([
+                    'id' => '_custom_option_2_price',
+                    'label' => 'Cena opcji 2',
+                    'data_type' => 'price',
+                    'wrapper_class' => 'form-field-wide',
+                ]);
+            echo '</div>';
+        echo '</div>';
+    echo '</div>';
+});
+
+add_action('woocommerce_process_product_meta', function ($post_id) {
+    $fields = [
+        '_custom_options_heading',
+        '_custom_option_1_label',
+        '_custom_option_1_price',
+        '_custom_option_2_label',
+        '_custom_option_2_price',
+    ];
+
+    foreach ($fields as $field) {
+        if (isset($_POST[$field])) {
+            $value = $_POST[$field];
+            if (str_contains($field, '_price')) {
+                $value = wc_format_decimal($value);
+            } else {
+                $value = sanitize_text_field($value);
+            }
+            update_post_meta($post_id, $field, $value);
+        }
+    }
+});
+
+add_action('woocommerce_before_add_to_cart_button', function () {
+    global $product;
+    if (!$product) return;
+
+    $heading = get_post_meta($product->get_id(), '_custom_options_heading', true);
+    $option1_label = get_post_meta($product->get_id(), '_custom_option_1_label', true);
+    $option1_price = get_post_meta($product->get_id(), '_custom_option_1_price', true);
+    $option2_label = get_post_meta($product->get_id(), '_custom_option_2_label', true);
+    $option2_price = get_post_meta($product->get_id(), '_custom_option_2_price', true);
+
+    if ((empty($option1_label) || $option1_price === '') && (empty($option2_label) || $option2_price === '')) {
+        return;
+    }
+
+    echo '<div id="custom-product-options-wrapper" class="custom-product-options-wrapper" data-product-price="' . esc_attr($product->get_price()) . '">';
+
+    if ($heading) {
+        echo '<h3>' . esc_html($heading) . '</h3>';
+    }
+
+    echo '<div class="custom-options-container">';
+    if ($option1_label && $option1_price !== '') {
+        echo '<div class="custom-option">';
+        echo '<input type="radio" id="custom_option_1" name="custom_product_option" value="' . esc_attr($option1_price) . '" checked>';
+        echo '<label for="custom_option_1">' . esc_html($option1_label) . ' (+' . wc_price($option1_price) . ')</label>';
+        echo '</div>';
+    }
+
+    if ($option2_label && $option2_price !== '') {
+        echo '<div class="custom-option">';
+        echo '<input type="radio" id="custom_option_2" name="custom_product_option" value="' . esc_attr($option2_price) . '">';
+        echo '<label for="custom_option_2">' . esc_html($option2_label) . ' (+' . wc_price($option2_price) . ')</label>';
+        echo '</div>';
+    }
+    echo '</div></div>';
+});
+
+add_action('admin_enqueue_scripts', function ($hook) {
+    if ('post.php' !== $hook && 'post-new.php' !== $hook) {
+        return;
+    }
+    if ('product' !== get_post_type()) {
+        return;
+    }
+    wp_enqueue_script('sage/admin.js', asset('resources/js/admin.js')->uri(), ['jquery'], null, true);
+    wp_enqueue_style('sage/admin.css', asset('resources/css/admin.scss')->uri(), false, null);
+}, 100);

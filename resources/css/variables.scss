@@ -104,6 +104,7 @@ body {
 	--p-900: #00112b;
 	--p-dark: #000b1c;
 	--p-darker: #000711;
+	--p-brand: #002b6d;
 
 
 	--secondary: #06A8FF;
@@ -133,7 +134,7 @@ body {
 	--bg-s-light: var(--s-200);
 	--bg-s-lighter:  var(--s-50);
 
-	--border-p: var(--p-300);
+	--border-p: var(--p-500);
 	--border-p-light: var(--p-100);
 	--border-s: var(--s-300);
 	--border-s-light: var(--s-200);
@@ -141,7 +142,6 @@ body {
 	--header: 'Inter', sans-serif;
 	--txt: 'Inter', sans-serif;
 	--btns-font: 'Inter', sans-serif;
-	--trajan: 'trajan-pro-3', serif;
 
 	--smt: 104px;
 	--spt: 104px;
@@ -156,7 +156,7 @@ body {
 	--img-3xl: 776px;
 
 	--section-gap: 40px;
-	--m-title: 16px;
+	--m-header: 8px;
 	--m-subtitle: 8px;
 	--m-btn: 32px;
 	--m-img: 40px;
@@ -282,7 +282,7 @@ body {
 }
 
 .section-brand {
-	background: var(--p-hover);
+	background: var(--p-brand);
 	padding: var(--smt) 0;
 
 	h1,
@@ -365,8 +365,8 @@ body {
 	}
 }
 
-.m-title {
-	margin-bottom: var(--m-title) !important;
+.m-header {
+	margin-bottom: var(--m-header) !important;
 }
 
 .m-subtitle {
@@ -440,10 +440,6 @@ a {
 
 .subtitle-s:before {
 
-}
-
-.trajan {
-	font-family: var(--trajan);
 }
 
 h1,
@@ -553,6 +549,10 @@ h6,
 	background-color: var(--primary);
 }
 
+.bg-brand {
+	background-color: var(--p-brand);
+}
+
 .bg-p-light {
 	background-color: var(--bg-p-light);
 }
@@ -610,6 +610,11 @@ h6,
 }
 
 /*--- !BORDER & SHADOW ---*/
+
+.radius {
+	border-radius: var(--radius) !important;
+}
+
 
 .radius-img {
 	border-radius: var(--radius) !important;

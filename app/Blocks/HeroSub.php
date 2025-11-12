@@ -43,12 +43,22 @@ class HeroSub extends Block
 				'preview_size' => 'medium',
 				'required' => 1,
 			])
-			->addText('subtitle', [
-				'label' => 'Śródtytuł',
+			->addText('header', [
+				'label' => 'Nagłówek',
 			])
-			->addText('title', [
-				'label' => 'Tytuł',
-				'required' => 1,
+			->addWysiwyg('text', [
+				'label' => 'Treść',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
+			])
+			->addLink('button1', [
+				'label' => 'Przycisk #1',
+				'return_format' => 'array',
+			])
+			->addLink('button2', [
+				'label' => 'Przycisk #2',
+				'return_format' => 'array',
 			])
 
 			->endGroup()
@@ -57,18 +67,6 @@ class HeroSub extends Block
 
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('gfx_top', [
-				'label' => 'Grafika górna',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('gfx_bottom', [
-				'label' => 'Grafika dolna',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
@@ -84,13 +82,6 @@ class HeroSub extends Block
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
 			'flip' => get_field('flip'),
-			'wide' => get_field('wide'),
-			'nomt' => get_field('nomt'),
-			'gap' => get_field('gap'),
-			'lightbg' => get_field('lightbg'),
-			'graybg' => get_field('graybg'),
-			'whitebg' => get_field('whitebg'),
-			'brandbg' => get_field('brandbg'),
 		];
 	}
 }

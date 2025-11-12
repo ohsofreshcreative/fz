@@ -4,6 +4,8 @@ import './menubar.js';
 import './footer-accordion.js';
 import './swiper.js';
 import './lightbox.js';
+import './custom-product-options.js';
+import './admin.js';
 
 /*--- BLOCKS ---*/
 

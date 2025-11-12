@@ -44,22 +44,12 @@ class TwoColumns extends Block
 				'preview_size' => 'medium',
 			])
 			->addText('title', ['label' => 'Tytuł'])
-			->addTextarea('text', [
-				'label' => 'Opis',
-				'rows' => 4,
-				'placeholder' => 'Wpisz opis...',
-				'new_lines' => 'br',
-			])
-			->addText('subtitle', ['label' => 'Śródtytuł'])
+			->addText('header', ['label' => 'Nagłówek'])
 			->addWysiwyg('content', [
 				'label' => 'Treść',
 				'tabs' => 'all', // 'visual', 'text', 'all'
 				'toolbar' => 'full', // 'basic', 'full'
 				'media_upload' => true,
-			])
-			->addLink('button', [
-				'label' => 'Przycisk',
-				'return_format' => 'array',
 			])
 			->endGroup()
 
@@ -71,23 +61,22 @@ class TwoColumns extends Block
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
-			->addText('title', ['label' => 'Tytuł'])
-			->addTextarea('text', [
-				'label' => 'Opis',
-				'rows' => 4,
-				'placeholder' => 'Wpisz opis...',
+			->addTextarea('where', [
+				'label' => 'Gdzie',
+				'rows' => 2,
 				'new_lines' => 'br',
 			])
-			->addText('subtitle', ['label' => 'Śródtytuł'])
-			->addWysiwyg('content', [
-				'label' => 'Treść',
-				'tabs' => 'all', // 'visual', 'text', 'all'
-				'toolbar' => 'full', // 'basic', 'full'
-				'media_upload' => true,
-				'wpautop' => false,
+			->addTextarea('when', [
+				'label' => 'Kiedy',
+				'rows' => 2,
+				'new_lines' => 'br',
 			])
-			->addLink('cta', [
-				'label' => 'Przycisk',
+			->addLink('button1', [
+				'label' => 'Przycisk #1',
+				'return_format' => 'array',
+			])
+			->addLink('button2', [
+				'label' => 'Przycisk #2',
 				'return_format' => 'array',
 			])
 			->endGroup()

@@ -23,27 +23,33 @@
 	@php(wp_body_open())
 
 	<div id="app">
-		<a class="sr-only focus:not-sr-only" href="#main">
-			{{ __('Skip to content', 'sage') }}
-		</a>
 
 		@include('sections.header')
+
+		@if (function_exists('is_woocommerce') && (is_shop() || is_product_category() || is_product_tag()))
+
+		@yield('content')
+
+		@elseif (function_exists('is_product') && is_product())
 
 		<main id="main" class="main -spt">
 			@yield('content')
 		</main>
 
-		<!--   @hasSection('sidebar')
-        <aside class="sidebar">
-          @yield('sidebar')
-        </aside>
-      @endif -->
+		@else
+
+		<main id="main" class="main -spt">
+			@yield('content')
+		</main>
+
+		@endif
 
 		@include('sections.footer')
 	</div>
 
 	@php(do_action('get_footer'))
 	@php(wp_footer())
+
 </body>
 
 </html>

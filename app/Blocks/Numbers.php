@@ -39,8 +39,7 @@ class Numbers extends Block
 			->addTab('Treści', ['placement' => 'top'])
 			->addGroup('g_numbers', ['label' => ''])
 
-			->addText('subtitle', ['label' => 'Śródtytuł'])
-			->addText('title', ['label' => 'Tytuł'])
+			->addText('header', ['label' => 'Nagłówek'])
 
 			->addRepeater('r_numbers', [
 				'label' => 'Kafelki',
@@ -49,18 +48,15 @@ class Numbers extends Block
 				'max' => 4,
 				'button_label' => 'Dodaj kafelek'
 			])
-			->addImage('card_image', [
+			->addImage('img', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
-			->addText('card_title', [
+			->addText('title', [
 				'label' => 'Nagłówek',
 			])
-			->addText('symbol', [
-				'label' => 'Symbol',
-			])
-			->addTextarea('card_txt', [
+			->addTextarea('txt', [
 				'label' => 'Opis',
 				'rows' => 4,
 				'new_lines' => 'br',
@@ -102,30 +98,21 @@ class Numbers extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-			->addTrueFalse('lightbg', [
-				'label' => 'Jasne tło',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('slightbg', [
-				'label' => 'Alternatywne tło',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('whitebg', [
-				'label' => 'Białe tło',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('brandbg', [
-				'label' => 'Tło marki',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			]);
+			->addSelect('background', [
+                'label' => 'Kolor tła',
+                'choices' => [
+                    'none' => 'Brak (domyślne)',
+                    'section-white' => 'Białe',
+                    'section-light' => 'Jasne',
+                    'section-gray' => 'Szare',
+                    'section-brand' => 'Marki',
+                    'section-gradient' => 'Gradient',
+                    'section-dark' => 'Ciemne',
+                ],
+                'default_value' => 'none',
+                'ui' => 0, // Ulepszony interfejs
+                'allow_null' => 0,
+            ]);
 
 		return $numbers;
 	}
@@ -140,10 +127,7 @@ class Numbers extends Block
 			'wide' => get_field('wide'),
 			'nomt' => get_field('nomt'),
 			'gap' => get_field('gap'),
-			'lightbg' => get_field('lightbg'),
-			'slightbg' => get_field('slightbg'),
-			'whitebg' => get_field('whitebg'),
-			'brandbg' => get_field('brandbg'),
+			'background' => get_field('background'),
 		];
 	}
 }

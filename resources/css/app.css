@@ -15,10 +15,23 @@
 @import '../css/blocks/home-about.scss';
 @import '../css/blocks/cards.scss';
 @import '../css/blocks/text.scss';
+@import '../css/blocks/experts.scss';
 @import '../css/blocks/partners-block.scss';
+@import '../css/blocks/hero-sub.scss';
+@import '../css/blocks/bottom-block.scss';
+@import '../css/blocks/text-image.scss';
+@import '../css/blocks/two-columns.scss';
+@import '../css/blocks/numbers.scss';
+@import '../css/blocks/invitation.scss';
+@import '../css/blocks/speakers.scss';
+@import '../css/blocks/hero-bg.scss';
+@import '../css/blocks/table.scss';
+@import '../css/blocks/text-text.scss';
+@import '../css/blocks/info.scss';
+@import '../css/blocks/gallery.scss';
+
 
 /*-- NOT USED --*/
-@import '../css/blocks/hero-sub.scss';
 @import '../css/blocks/hero-offer.scss';
 
 @import '../css/blocks/text-image.scss';

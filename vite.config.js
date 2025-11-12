@@ -29,6 +29,9 @@ export default defineConfig({
         'resources/js/app.js',
         'resources/css/editor.css',
         'resources/js/editor.js',
+		//added
+        'resources/js/admin.js',
+        'resources/css/admin.css',
       ],
       refresh: true,
     }),

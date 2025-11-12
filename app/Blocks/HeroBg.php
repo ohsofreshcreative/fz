@@ -5,11 +5,11 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class HeroCases extends Block
+class HeroBg extends Block
 {
-	public $name = 'Sekcja Hero - Realizacje';
-	public $description = 'hero-cases';
-	public $slug = 'hero-cases';
+	public $name = 'Hero - Tło';
+	public $description = 'hero-bg';
+	public $slug = 'hero-bg';
 	public $category = 'formatting';
 	public $icon = 'align-full-width';
 	public $keywords = ['tresc', 'zdjecie'];
@@ -22,10 +22,10 @@ class HeroCases extends Block
 
 	public function fields()
 	{
-		$hero_cases = new FieldsBuilder('hero-cases');
+		$hero_bg = new FieldsBuilder('hero-bg');
 
-		$hero_cases
-			->setLocation('block', '==', 'acf/hero-cases') // ważne!
+		$hero_bg
+			->setLocation('block', '==', 'acf/hero-bg') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
@@ -36,11 +36,12 @@ class HeroCases extends Block
 				'multi_expand' => true,
 			])
 			->addTab('Treść', ['placement' => 'top']) 
-			->addGroup('g_herocases', ['label' => 'Hero - Pojedyncza oferta'])
+			->addGroup('g_herobg', ['label' => 'Hero - Tło'
+			])
 			->addImage('image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
+				'preview_size' => 'thumbnail',
 			])
 			->addText('title', ['label' => 'Tytuł'])
 
@@ -55,13 +56,13 @@ class HeroCases extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $hero_cases;
+		return $hero_bg;
 	}
 
 	public function with()
 	{
 		return [
-			'g_herocases' => get_field('g_herocases'),
+			'g_herobg' => get_field('g_herobg'),
 			'flip' => get_field('flip'),
 		];
 	}

@@ -3,28 +3,38 @@ $sectionClass = '';
 $sectionClass .= $flip ? ' order-flip' : '';
 @endphp
 
-<section data-gsap-anim="section" class="two-cols -smt {{ $sectionClass }}">
+<section data-gsap-anim="section" class="b-two-cols -smt {{ $sectionClass }}">
 	<div class="__wrapper c-main grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8">
 		<div class="__first">
-
+			@if (!empty($col1['image']))
 			<img class="m-img" src="{{ $col1['image']['url'] }}" alt="{{ $col1['image']['alt'] ?? '' }}">
-			<h3 class="mt-5 primary">{{ $col1['title'] }}</h3>
-			<p>{{ $col1['text'] }}</p>
-			<h5 class="mt-5">{{ $col1['subtitle'] }}</h5>
-			<div class="mt-4 __content">{!! $col1['content'] !!}</div>
-			@if (!empty($col1['button']))
-			<a href="{{ $col1['button']['url'] }}">{{ $col1['button']['title'] }}</a>
 			@endif
+			<p class="subtitle-s m-subtitle">{{ $col1['title'] }}</p>
+			<h3 class="text-white m-header">{{ $col1['header'] }}</h3>
+			<div class="__txt text-white">{!! $col1['content'] !!}</div>
 		</div>
 		<div class="__second">
 
-			<img class="m-img" src="{{ $col2['image']['url'] }}" alt="{{ $col2['image']['alt'] ?? '' }}">
-			<h3 class="mt-6">{{ $col2['title'] }}</h3>
-			<p>{{ $col2['text'] }}</p>
-			<h5 class="mt-5">{{ $col2['subtitle'] }}</h5>
-			<div class="mt-4 __content">{!! $col2['content'] !!}</div>
-			@if (!empty($col2['button']))
-			<a href="{{ $col2['button']['url'] }}">{{ $col2['button']['title'] }}</a>
+			<div class="flex gap-8 mt-10">
+				<div data-gsap-element="item" class="text-white">
+					<img src="/wp-content/uploads/2025/11/place.svg" />
+					<b class="secondary block uppercase m-subtitle mt-4">Gdzie?</b>
+					<p>{!! $col2['where'] !!}</p>
+				</div>
+				<div data-gsap-element="item" class="text-white">
+					<img src="/wp-content/uploads/2025/11/calendar.svg" />
+					<b class="secondary block uppercase m-subtitle mt-4">Kiedy?</b>
+					<p>{!! $col2['when'] !!}</p>
+				</div>
+			</div>
+			@if (!empty($col2['button1']))
+			<div class="inline-buttons m-btn">
+				<a data-gsap-element="button" class="second-btn left-btn" href="{{ $col2['button1']['url'] }}" target="{{ $col2['button1']['target'] }}">{{ $col2['button1']['title'] }}</a>
+
+				@if (!empty($col2['button2']))
+				<a data-gsap-element="button" class="white-btn" href="{{ $col2['button2']['url'] }}" target="{{ $col2['button2']['target'] }}">{{ $col2['button2']['title'] }}</a>
+				@endif
+			</div>
 			@endif
 		</div>
 	</div>
