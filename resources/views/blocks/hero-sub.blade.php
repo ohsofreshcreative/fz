@@ -4,7 +4,11 @@ $sectionClass .= $flip ? ' order-flip' : '';
 @endphp
 
 @php
+<<<<<<< HEAD
 $backgroundImage = !empty($g_hero_sub['image']['url']) ? "linear-gradient(90deg, rgba(0, 34, 85, 0.95) 30%, rgba(0, 34, 85, 0.3) 100%), url({$g_hero_sub['image']['url']})" : '';
+=======
+$backgroundImage = !empty($g_hero_sub['image']['url']) ? "linear-gradient(90deg, rgba(0, 34, 85, 0.9) 30%, rgba(0, 34, 85, 0.3) 100%), url({$g_hero_sub['image']['url']})" : '';
+>>>>>>> 4c6f1db (Własne zmiany przed pull)
 @endphp
 
 <!-- hero-sub -->
@@ -14,8 +18,15 @@ $backgroundImage = !empty($g_hero_sub['image']['url']) ? "linear-gradient(90deg,
 	<div class="__wrapper c-main {{ !empty($g_hero_sub['image']) ? 'py-50' : '' }}">
 
 		<div class="__content w-full sm:w-3/4 relative z-10">
+<<<<<<< HEAD
 			
 			<h1 data-gsap-element="header" class="text-white m-header">{{ $g_hero_sub['header'] }}</h1>
+=======
+			@if (!empty($g_hero_sub['subtitle']))
+			<p data-gsap-element="subheader" class="subtitle-s">{{ strip_tags($g_hero_sub['subtitle']) }}</p>
+			@endif
+			<h1 data-gsap-element="header" class="text-white">{{ $g_hero_sub['title'] }}</h1>
+>>>>>>> 4c6f1db (Własne zmiany przed pull)
 
 			<div data-gsap-element="text" class="text-white text-xl">{{ strip_tags($g_hero_sub['text']) }}</div>
 
