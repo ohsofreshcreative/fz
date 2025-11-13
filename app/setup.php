@@ -206,131 +206,211 @@ add_filter('acf/fields/wysiwyg/settings', function ($settings) {
     return $settings;
 });
 
-/////////////////////////
-/////////////////////////
-/*--- REGISTRATION ---*/
-/////////////////////////
-/////////////////////////
+
+/*-- HIDE QUANTITY ---*/
+
+add_filter('woocommerce_is_sold_individually', '__return_true');
+
+add_filter('woocommerce_quantity_input_type', function ($type) {
+    if (is_singular('product')) {
+        return 'hidden';
+    }
+    return $type;
+}, 10, 1);
+
+add_filter('woocommerce_quantity_input_args', function ($args, $product) {
+    if (is_singular('product')) {
+        $args['input_value'] = 1;
+        $args['min_value'] = 1;
+        $args['max_value'] = 1;
+    }
+    return $args;
+}, 10, 2);
+
+add_filter('woocommerce_cart_item_quantity', function ($product_quantity) {
+    return '';
+}, 10, 1);
+
+add_filter('woocommerce_add_to_cart_validation', function ($passed, $product_id, $quantity) {
+    $cart_id = WC()->cart->generate_cart_id($product_id);
+    if (WC()->cart->find_product_in_cart($cart_id)) {
+        wc_add_notice(__('Możesz posiadać tylko jedną sztukę tego produktu w koszyku.'), 'error');
+        return false;
+    }
+    return $passed;
+}, 10, 3);
 
 
-add_filter('woocommerce_product_data_tabs', function ($tabs) {
-    $tabs['custom_options_tab'] = [
-        'label' => 'Rejestracja',
-        'target' => 'custom_options_product_data',
-        'class' => ['show_if_simple', 'show_if_variable'],
-        'priority' => 80,
-    ];
-    return $tabs;
+/*--- CART BEHAVIOR ---*/
+
+add_filter('woocommerce_add_to_cart_redirect', function () {
+    return wc_get_checkout_url();
 });
 
-add_action('woocommerce_product_data_panels', function () {
-    echo '<div id="custom_options_product_data" class="panel woocommerce_options_panel">';
-        echo '<div class="options_group group_wrapper">';
-            echo '<div class="group_wrapper_title">Ustawienia pól rejestracji</div>';
+add_filter('woocommerce_add_to_cart_validation', function ($passed) {
+    if (! WC()->cart->is_empty()) {
+        WC()->cart->empty_cart();
+    }
+    return $passed;
+});
 
-            echo '<div class="collapsible-content">';
-                woocommerce_wp_text_input([
-                    'id' => '_custom_options_heading',
-                    'label' => 'Nagłówek sekcji opcji',
-                    'desc_tip' => true,
-                    'description' => 'Wprowadź tekst, który pojawi się nad opcjami na stronie produktu.',
-                    'wrapper_class' => 'form-field-wide',
-                ]);
+/*--- CHANGE CHECOUT TITLE ---*/
 
-                woocommerce_wp_text_input([
-                    'id' => '_custom_option_1_label',
-                    'label' => 'Etykieta opcji 1',
-                    'wrapper_class' => 'form-field-wide',
-                ]);
-                woocommerce_wp_text_input([
-                    'id' => '_custom_option_1_price',
-                    'label' => 'Cena opcji 1',
-                    'data_type' => 'price',
-                    'wrapper_class' => 'form-field-wide',
-                ]);
+add_filter('woocommerce_checkout_fields', function ($fields) {
+    if (isset($fields['billing']['billing_first_name'])) {
+        $fields['billing']['billing_first_name']['label'] = 'Imię';
+    }
+    return $fields;
+});
 
-                woocommerce_wp_text_input([
-                    'id' => '_custom_option_2_label',
-                    'label' => 'Etykieta opcji 2',
-                    'wrapper_class' => 'form-field-wide',
-                ]);
-                woocommerce_wp_text_input([
-                    'id' => '_custom_option_2_price',
-                    'label' => 'Cena opcji 2',
-                    'data_type' => 'price',
-                    'wrapper_class' => 'form-field-wide',
-                ]);
-            echo '</div>';
-        echo '</div>';
+add_filter('gettext', function ($translated_text, $text, $domain) {
+    if (is_checkout() && $domain === 'woocommerce' && $text === 'Billing details') {
+        $translated_text = 'Zarejestruj się';
+    }
+    return $translated_text;
+}, 20, 3);
+
+/*
+|--------------------------------------------------------------------------
+| WooCommerce Checkout Customizations
+|--------------------------------------------------------------------------
+*/
+
+/*
+|--------------------------------------------------------------------------
+| WooCommerce Checkout Customizations
+|--------------------------------------------------------------------------
+*/
+
+/**
+ * 1. Dodanie niestandardowych pól dla uczestnika (jako pierwsza sekcja).
+ */
+add_action('woocommerce_before_checkout_billing_form', function ($checkout) {
+    echo '<div id="participant_details_wrapper" class="mb-8">';
+    echo '<h5 class="text-white -mt-4">Dane uczestnika</h5>';
+
+    echo '<div id="participant_fields">';
+
+    woocommerce_form_field('participant_name', [
+        'type' => 'text', 'class' => ['form-row-first'], 'label' => __('Imię'), 'required' => true,
+    ], $checkout->get_value('participant_name'));
+
+    woocommerce_form_field('participant_surname', [
+        'type' => 'text', 'class' => ['form-row-last'], 'label' => __('Nazwisko'), 'required' => true,
+    ], $checkout->get_value('participant_surname'));
+
+    woocommerce_form_field('participant_address', [
+        'type' => 'text', 'class' => ['form-row-wide'], 'label' => __('Ulica'), 'required' => true,
+    ], $checkout->get_value('participant_address'));
+    
+    woocommerce_form_field('participant_postcode', [
+        'type' => 'text', 'class' => ['form-row-first'], 'label' => __('Kod pocztowy'), 'required' => true,
+        'custom_attributes' => ['pattern' => '^\d{2}-\d{3}$', 'oninput' => "this.value = this.value.replace(/[^0-9-]/g, '').replace(/(\d{2})(\d{3})/, '$1-$2').substring(0, 6)", 'maxlength' => 6, 'placeholder' => 'XX-XXX'],
+    ], $checkout->get_value('participant_postcode'));
+
+    woocommerce_form_field('participant_city', [
+        'type' => 'text', 'class' => ['form-row-last'], 'label' => __('Miejscowość'), 'required' => true,
+    ], $checkout->get_value('participant_city'));
+
+    woocommerce_form_field('participant_phone', [
+        'type' => 'tel', 'class' => ['form-row-wide'], 'label' => __('Numer telefonu'), 'required' => true,
+        'custom_attributes' => ['pattern' => '^\d{9}$', 'oninput' => "this.value = this.value.replace(/[^0-9]/g, '').substring(0, 9)", 'maxlength' => 9],
+    ], $checkout->get_value('participant_phone'));
+
+    woocommerce_form_field('participant_mail', [
+        'type' => 'email', 'class' => ['form-row-wide'], 'label' => __('Email'), 'required' => true, 'placeholder' => __('na ten adres zostanie przesłany certyfikat'), 'validate' => ['email'],
+    ], $checkout->get_value('participant_mail'));
+
+    woocommerce_form_field('participant_stanowisko', [
+        'type' => 'text', 'class' => ['form-row-wide'], 'label' => __('Stanowisko'), 'required' => true,
+    ], $checkout->get_value('participant_stanowisko'));
+
+    woocommerce_form_field('participant_recepty', [
+        'type' => 'select', 'class' => ['form-row-wide'], 'label' => __('Uprawnienia do wystawiania recept'), 'required' => true,
+        'options' => ['' => __('Wybierz opcję...'), 'tak' => __('Tak'), 'nie' => __('Nie')],
+    ], $checkout->get_value('participant_recepty'));
+
+    woocommerce_form_field('participant_option_one', [
+        'type' => 'select', 'class' => ['form-row-wide'], 'label' => __('Czy posiadasz nr prawa wykonywania zawodu?'), 'required' => true,
+        'options' => ['' => __('Wybierz opcję...'), 'yes' => __('Tak'), 'no' => __('Nie')],
+    ], $checkout->get_value('participant_option_one'));
+    
+    // Dodajemy klasę .hidden do tego pola, aby JS mógł je pokazać/ukryć
+    woocommerce_form_field('participant_option_two', [
+        'type' => 'text', 'class' => ['form-row-wide', 'hidden'], 'label' => __('Nr prawa wykonywania zawodu'), 'required' => false,
+    ], $checkout->get_value('participant_option_two'));
+    
+    echo '</div>'; // #participant_fields
+    echo '</div>'; // #participant_details_wrapper
+}, 5); // Priorytet 5, aby wykonało się jako pierwsze
+
+/**
+ * 2. Dodanie przycisków wyboru typu klienta i nagłówka do faktury.
+ */
+add_action('woocommerce_before_checkout_billing_form', function ($checkout) {
+    echo '<div id="customer-type-buttons" class="mb-4">';
+    echo '<button type="button" id="individual-btn" class="button">Chcę dostać fakturę imienną</button>';
+    echo '<button type="button" id="business-btn" class="button">Chcę dostać fakturę VAT</button>';
     echo '</div>';
+    
+    echo '<div id="billing_details_header_wrapper">';
+    echo '<h5 id="billing_details_header" class="text-white mt-10">Dane do faktury</h5>';
+    echo '</div>';
+}, 15); // Priorytet 15, aby wykonało się po polach uczestnika, ale przed polami billingowymi
+
+/**
+ * Modyfikacja pól rozliczeniowych WooCommerce (działa tak jak wcześniej).
+ */
+add_filter('woocommerce_billing_fields', function ($fields) {
+    if (isset($fields['billing_postcode'])) {
+        $fields['billing_postcode']['class'] = array_diff($fields['billing_postcode']['class'], array('form-row-wide'));
+        $fields['billing_postcode']['class'][] = 'form-row-first';
+    }
+
+    if (isset($fields['billing_city'])) {
+        $fields['billing_city']['class'] = array_diff($fields['billing_city']['class'], array('form-row-wide'));
+        $fields['billing_city']['class'][] = 'form-row-last';
+    }
+
+    if (isset($fields['billing_company'])) {
+        $fields['billing_company']['label'] = 'Nazwa firmy/instytucji';
+        $fields['billing_company']['class'][] = 'hidden';
+    }
+
+    if (isset($fields['billing_vat_id'])) {
+        $fields['billing_vat_id']['label'] = 'NIP';
+        $fields['billing_vat_id']['class'][] = 'hidden';
+    }
+
+    return $fields;
 });
 
-add_action('woocommerce_process_product_meta', function ($post_id) {
-    $fields = [
-        '_custom_options_heading',
-        '_custom_option_1_label',
-        '_custom_option_1_price',
-        '_custom_option_2_label',
-        '_custom_option_2_price',
+/**
+ * Zapisywanie niestandardowych pól do meta zamówienia (bez zmian).
+ */
+add_action('woocommerce_checkout_create_order', function ($order) {
+    $posted_data = $_POST;
+
+    $billing_type = !empty($posted_data['billing_company']) ? 'Firma' : 'Osoba prywatna';
+    $order->update_meta_data('Typ faktury', $billing_type);
+
+    $fields_to_save = [
+        'participant_name' => 'Imię uczestnika',
+        'participant_surname' => 'Nazwisko uczestnika',
+        'participant_address' => 'Adres uczestnika',
+        'participant_postcode' => 'Kod pocztowy uczestnika',
+        'participant_city' => 'Miejscowość uczestnika',
+        'participant_phone' => 'Numer telefonu uczestnika',
+        'participant_mail' => 'E-mail uczestnika (do certyfikatu)',
+        'participant_stanowisko' => 'Stanowisko uczestnika',
+        'participant_recepty' => 'Uprawnienia do wystawiania recept',
+        'participant_option_one' => 'Czy posiadasz nr prawa wykonywania zawodu?',
+        'participant_option_two' => 'Nr prawa wykonywania zawodu',
     ];
 
-    foreach ($fields as $field) {
-        if (isset($_POST[$field])) {
-            $value = $_POST[$field];
-            if (str_contains($field, '_price')) {
-                $value = wc_format_decimal($value);
-            } else {
-                $value = sanitize_text_field($value);
-            }
-            update_post_meta($post_id, $field, $value);
+    foreach ($fields_to_save as $key => $label) {
+        if (!empty($posted_data[$key])) {
+            $order->update_meta_data($label, sanitize_text_field($posted_data[$key]));
         }
     }
 });
-
-add_action('woocommerce_before_add_to_cart_button', function () {
-    global $product;
-    if (!$product) return;
-
-    $heading = get_post_meta($product->get_id(), '_custom_options_heading', true);
-    $option1_label = get_post_meta($product->get_id(), '_custom_option_1_label', true);
-    $option1_price = get_post_meta($product->get_id(), '_custom_option_1_price', true);
-    $option2_label = get_post_meta($product->get_id(), '_custom_option_2_label', true);
-    $option2_price = get_post_meta($product->get_id(), '_custom_option_2_price', true);
-
-    if ((empty($option1_label) || $option1_price === '') && (empty($option2_label) || $option2_price === '')) {
-        return;
-    }
-
-    echo '<div id="custom-product-options-wrapper" class="custom-product-options-wrapper" data-product-price="' . esc_attr($product->get_price()) . '">';
-
-    if ($heading) {
-        echo '<h3>' . esc_html($heading) . '</h3>';
-    }
-
-    echo '<div class="custom-options-container">';
-    if ($option1_label && $option1_price !== '') {
-        echo '<div class="custom-option">';
-        echo '<input type="radio" id="custom_option_1" name="custom_product_option" value="' . esc_attr($option1_price) . '" checked>';
-        echo '<label for="custom_option_1">' . esc_html($option1_label) . ' (+' . wc_price($option1_price) . ')</label>';
-        echo '</div>';
-    }
-
-    if ($option2_label && $option2_price !== '') {
-        echo '<div class="custom-option">';
-        echo '<input type="radio" id="custom_option_2" name="custom_product_option" value="' . esc_attr($option2_price) . '">';
-        echo '<label for="custom_option_2">' . esc_html($option2_label) . ' (+' . wc_price($option2_price) . ')</label>';
-        echo '</div>';
-    }
-    echo '</div></div>';
-});
-
-add_action('admin_enqueue_scripts', function ($hook) {
-    if ('post.php' !== $hook && 'post-new.php' !== $hook) {
-        return;
-    }
-    if ('product' !== get_post_type()) {
-        return;
-    }
-    wp_enqueue_script('sage/admin.js', asset('resources/js/admin.js')->uri(), ['jquery'], null, true);
-    wp_enqueue_style('sage/admin.css', asset('resources/css/admin.scss')->uri(), false, null);
-}, 100);

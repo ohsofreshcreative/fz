@@ -30,11 +30,11 @@
 
 		@yield('content')
 
-		@elseif (function_exists('is_product') && is_product())
+		@elseif (function_exists('is_woocommerce') && (is_product() || is_cart() || is_checkout()))
 
-		<main id="main" class="main -spt">
-			@yield('content')
-		</main>
+<main id="main" class="main -spt c-main">
+    @yield('content')
+</main>
 
 		@else
 

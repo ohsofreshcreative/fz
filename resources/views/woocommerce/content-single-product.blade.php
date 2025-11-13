@@ -19,19 +19,9 @@ global $product;
 
 <div id="product-{{ $product->get_id() }}" {!! wc_product_class('b-single-product c-main', $product) !!}>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-    <div class="product-gallery">
-      @php
-        /**
-         * Hook: woocommerce_before_single_product_summary.
-         * @hooked woocommerce_show_product_sale_flash - 10
-         * @hooked woocommerce_show_product_images - 20
-         */
-        do_action('woocommerce_before_single_product_summary');
-      @endphp
-    </div>
+  <div>
 
-    <div class="summary entry-summary">
+    <div class="">
       @php
         /**
          * Hook: woocommerce_single_product_summary.

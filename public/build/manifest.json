@@ -3,17 +3,8 @@
     "file": "assets/editor.deps-DxpY22xl.json",
     "src": "editor.deps.json"
   },
-  "resources/css/admin.css": {
-    "file": "assets/admin-CTLi70iu.css",
-    "src": "resources/css/admin.css",
-    "isEntry": true,
-    "name": "admin",
-    "names": [
-      "admin.css"
-    ]
-  },
   "resources/css/app.css": {
-    "file": "assets/app-CAoU_nNy.css",
+    "file": "assets/app-bs0URs8i.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -22,7 +13,7 @@
     ]
   },
   "resources/css/editor.css": {
-    "file": "assets/editor-qcUsvp1Y.css",
+    "file": "assets/editor-BHT9STe7.css",
     "src": "resources/css/editor.css",
     "isEntry": true,
     "name": "editor",
@@ -34,20 +25,11 @@
     "file": "assets/ohsofresh-DBDLJZzV.svg",
     "src": "resources/images/ohsofresh.svg"
   },
-  "resources/js/admin.js": {
-    "file": "assets/admin-Dl5H_-Op.js",
-    "name": "admin",
-    "src": "resources/js/admin.js",
-    "isEntry": true
-  },
   "resources/js/app.js": {
-    "file": "assets/app-BqwrNrv_.js",
+    "file": "assets/app-C6y4RnIn.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
-    "imports": [
-      "resources/js/admin.js"
-    ],
     "css": [
       "assets/app-2D5RCnEX.css"
     ]

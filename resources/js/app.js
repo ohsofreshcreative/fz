@@ -4,8 +4,7 @@ import './menubar.js';
 import './footer-accordion.js';
 import './swiper.js';
 import './lightbox.js';
-import './custom-product-options.js';
-import './admin.js';
+import './registration.js';
 
 /*--- BLOCKS ---*/
 
@@ -215,4 +214,89 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+});
+
+
+/*--- LOGIKA DLA STRONY CHECKOUT WOOCOMMERCE ---*/
+document.addEventListener('DOMContentLoaded', function() {
+  const checkoutForm = document.querySelector('form.woocommerce-checkout');
+  if (!checkoutForm) {
+    return; // Wyjdź, jeśli to nie jest strona checkout
+  }
+
+  const individualBtn = document.getElementById('individual-btn');
+  const businessBtn = document.getElementById('business-btn');
+  
+  const firstNameField = document.getElementById('billing_first_name_field');
+  const lastNameField = document.getElementById('billing_last_name_field');
+  const companyField = document.getElementById('billing_company_field');
+  // Pole NIP może mieć różne ID (np. billing_nip lub billing_vat_id)
+  const nipField = document.getElementById('billing_nip_field') || document.getElementById('billing_vat_id_field');
+  
+  const firstNameLabel = document.querySelector('label[for="billing_first_name"]');
+  const lastNameLabel = document.querySelector('label[for="billing_last_name"]');
+  
+  const participantOptionOne = document.getElementById('participant_option_one');
+  const participantOptionTwoField = document.getElementById('participant_option_two_field');
+
+  // Widok klienta indywidualnego
+  const setupIndividualView = () => {
+    individualBtn.classList.add('active-btn');
+    businessBtn.classList.remove('active-btn');
+
+    firstNameField?.classList.remove('hidden');
+    lastNameField?.classList.remove('hidden');
+    companyField?.classList.add('hidden');
+    nipField?.classList.add('hidden');
+
+    // Upewnij się, że etykiety wracają do pierwotnego stanu
+    if (firstNameLabel) firstNameLabel.innerHTML = 'Imię <abbr class="required" title="wymagane">*</abbr>';
+    if (lastNameLabel) lastNameLabel.innerHTML = 'Nazwisko <abbr class="required" title="wymagane">*</abbr>';
+};
+
+  // Widok klienta firmowego
+  const setupBusinessView = () => {
+    businessBtn.classList.add('active-btn');
+    individualBtn.classList.remove('active-btn');
+
+    // Pokazujemy pole "Imię", ale zmieniamy jego etykietę
+    firstNameField?.classList.remove('hidden');
+    lastNameField?.classList.remove('hidden');
+    
+    // Ukrywamy dedykowane pole 'Nazwa firmy', bo nie będzie nam potrzebne
+    companyField?.classList.add('hidden');
+    nipField?.classList.remove('hidden'); // Pokazujemy pole NIP, jeśli istnieje
+
+    // Zmieniamy etykiety zgodnie z Twoim oryginalnym kodem
+    if (firstNameLabel) firstNameLabel.innerHTML = 'Nazwa firmy/instytucji <abbr class="required" title="wymagane">*</abbr>';
+    if (lastNameLabel) lastNameLabel.innerHTML = 'NIP <abbr class="required" title="wymagane">*</abbr>';
+};
+  
+  // Logika dla przycisków wyboru typu klienta
+  if (individualBtn && businessBtn) {
+    individualBtn.addEventListener('click', setupIndividualView);
+    businessBtn.addEventListener('click', setupBusinessView);
+    // Ustawienie domyślnego widoku przy załadowaniu strony
+    setupIndividualView();
+  }
+  
+  // Logika dla warunkowego pola "Nr prawa wykonywania zawodu"
+  const toggleParticipantOptionTwo = () => {
+    if (!participantOptionOne || !participantOptionTwoField) return;
+
+    if (participantOptionOne.value === 'yes') {
+      participantOptionTwoField.classList.remove('hidden');
+      participantOptionTwoField.querySelector('input').setAttribute('required', 'required');
+    } else {
+      participantOptionTwoField.classList.add('hidden');
+      participantOptionTwoField.querySelector('input').removeAttribute('required');
+      participantOptionTwoField.querySelector('input').value = '';
+    }
+  };
+
+  if (participantOptionOne && participantOptionTwoField) {
+    participantOptionOne.addEventListener('change', toggleParticipantOptionTwo);
+    // Ustawienie stanu początkowego przy załadowaniu strony
+    toggleParticipantOptionTwo();
+  }
 });
