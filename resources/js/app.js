@@ -252,6 +252,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Upewnij się, że etykiety wracają do pierwotnego stanu
     if (firstNameLabel) firstNameLabel.innerHTML = 'Imię <abbr class="required" title="wymagane">*</abbr>';
     if (lastNameLabel) lastNameLabel.innerHTML = 'Nazwisko <abbr class="required" title="wymagane">*</abbr>';
+
+	const hiddenField = document.getElementById('billing_is_business');
+    if (hiddenField) {
+        hiddenField.value = 'no';
+    }
 };
 
   // Widok klienta firmowego
@@ -270,6 +275,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Zmieniamy etykiety zgodnie z Twoim oryginalnym kodem
     if (firstNameLabel) firstNameLabel.innerHTML = 'Nazwa firmy/instytucji <abbr class="required" title="wymagane">*</abbr>';
     if (lastNameLabel) lastNameLabel.innerHTML = 'NIP <abbr class="required" title="wymagane">*</abbr>';
+
+	const hiddenField = document.getElementById('billing_is_business');
+    if (hiddenField) {
+        hiddenField.value = 'yes';
+    }
 };
   
   // Logika dla przycisków wyboru typu klienta
@@ -299,4 +309,45 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ustawienie stanu początkowego przy załadowaniu strony
     toggleParticipantOptionTwo();
   }
+});
+
+/*--- ZGODY ---*/
+
+document.addEventListener('DOMContentLoaded', function() {
+    const checkoutForm = document.querySelector('form.woocommerce-checkout');
+    if (!checkoutForm) {
+        return;
+    }
+
+    const initAgreementCheckboxes = () => {
+        const selectAllCheckbox = document.querySelector('.select-all-agreements-checkbox');
+        const agreementCheckboxes = document.querySelectorAll('.agreement-checkbox');
+        const termsCheckbox = document.querySelector('#terms');
+
+        if (selectAllCheckbox && !selectAllCheckbox.dataset.initialized) {
+            selectAllCheckbox.dataset.initialized = 'true';
+            selectAllCheckbox.addEventListener('change', function() {
+                const isChecked = this.checked;
+
+                agreementCheckboxes.forEach(checkbox => {
+                    checkbox.checked = isChecked;
+                });
+
+                if (termsCheckbox) {
+                    termsCheckbox.checked = isChecked;
+                }
+            });
+        }
+    };
+
+    const observer = new MutationObserver(function(mutations) {
+        initAgreementCheckboxes();
+    });
+
+    observer.observe(checkoutForm, {
+        childList: true,
+        subtree: true
+    });
+
+    initAgreementCheckboxes();
 });

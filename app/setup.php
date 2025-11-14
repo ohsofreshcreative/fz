@@ -254,28 +254,6 @@ add_filter('woocommerce_add_to_cart_validation', function ($passed) {
     return $passed;
 });
 
-/*--- CHANGE CHECOUT TITLE ---*/
-
-add_filter('woocommerce_checkout_fields', function ($fields) {
-    if (isset($fields['billing']['billing_first_name'])) {
-        $fields['billing']['billing_first_name']['label'] = 'Imię';
-    }
-    return $fields;
-});
-
-add_filter('gettext', function ($translated_text, $text, $domain) {
-    if (is_checkout() && $domain === 'woocommerce' && $text === 'Billing details') {
-        $translated_text = 'Zarejestruj się';
-    }
-    return $translated_text;
-}, 20, 3);
-
-/*
-|--------------------------------------------------------------------------
-| WooCommerce Checkout Customizations
-|--------------------------------------------------------------------------
-*/
-
 /*
 |--------------------------------------------------------------------------
 | WooCommerce Checkout Customizations
@@ -365,11 +343,24 @@ add_filter('woocommerce_billing_fields', function ($fields) {
     if (isset($fields['billing_postcode'])) {
         $fields['billing_postcode']['class'] = array_diff($fields['billing_postcode']['class'], array('form-row-wide'));
         $fields['billing_postcode']['class'][] = 'form-row-first';
+        $fields['billing_postcode']['custom_attributes'] = [
+            'pattern' => '^\d{2}-\d{3}$',
+            'oninput' => "this.value = this.value.replace(/[^0-9-]/g, '').replace(/(\d{2})(\d{3})/, '$1-$2').substring(0, 6)",
+            'maxlength' => 6,
+        ];
     }
 
     if (isset($fields['billing_city'])) {
         $fields['billing_city']['class'] = array_diff($fields['billing_city']['class'], array('form-row-wide'));
         $fields['billing_city']['class'][] = 'form-row-last';
+    }
+    
+    if (isset($fields['billing_phone'])) {
+        $fields['billing_phone']['custom_attributes'] = [
+            'pattern' => '^\d{9}$',
+            'oninput' => "this.value = this.value.replace(/[^0-9]/g, '').substring(0, 9)",
+            'maxlength' => 9,
+        ];
     }
 
     if (isset($fields['billing_company'])) {
@@ -414,3 +405,158 @@ add_action('woocommerce_checkout_create_order', function ($order) {
         }
     }
 });
+
+/*--- Walidacja niestandardowych pól uczestnika ---*/
+
+add_filter('woocommerce_checkout_fields', function ($fields) {
+    if (isset($fields['billing']['billing_first_name'])) {
+        $fields['billing']['billing_first_name']['required'] = false;
+    }
+    if (isset($fields['billing']['billing_last_name'])) {
+        $fields['billing']['billing_last_name']['required'] = false;
+    }
+    return $fields;
+});
+
+add_action('woocommerce_checkout_process', function () {
+    $is_business = isset($_POST['billing_is_business']) && $_POST['billing_is_business'] === 'yes';
+
+    if (function_exists('wc_clear_notices')) {
+        $all_notices = wc_get_notices('error');
+        $notices_to_keep = [];
+
+        foreach ($all_notices as $notice) {
+            $message = is_array($notice) ? $notice['notice'] : $notice;
+            if (strpos($message, 'rozliczeniowy') === false) {
+                $notices_to_keep[] = $notice;
+            }
+        }
+
+        wc_clear_notices();
+        foreach ($notices_to_keep as $notice) {
+            wc_add_notice(is_array($notice) ? $notice['notice'] : $notice, 'error');
+        }
+    }
+
+    if ($is_business) {
+        if (empty($_POST['billing_first_name'])) {
+            \wc_add_notice('<strong>Nazwa firmy/instytucji</strong> jest polem wymaganym.', 'error');
+        }
+        if (empty($_POST['billing_last_name'])) {
+            \wc_add_notice('<strong>NIP</strong> jest polem wymaganym.', 'error');
+        }
+    } else {
+        if (empty($_POST['billing_first_name'])) {
+            \wc_add_notice('<strong>Imię płatnika</strong> jest polem wymaganym.', 'error');
+        }
+        if (empty($_POST['billing_last_name'])) {
+            \wc_add_notice('<strong>Nazwisko płatnika</strong> jest polem wymaganym.', 'error');
+        }
+    }
+
+    $participant_fields = [
+        'participant_name' => 'Imię uczestnika',
+        'participant_surname' => 'Nazwisko uczestnika',
+        'participant_address' => 'Ulica uczestnika',
+        'participant_postcode' => 'Kod pocztowy uczestnika',
+        'participant_city' => 'Miejscowość uczestnika',
+        'participant_phone' => 'Numer telefonu uczestnika',
+        'participant_mail' => 'Email uczestnika',
+        'participant_stanowisko' => 'Stanowisko uczestnika',
+        'participant_recepty' => 'Uprawnienia do wystawiania recept',
+        'participant_option_one' => 'Odpowiedź na pytanie o nr prawa wykonywania zawodu',
+    ];
+
+    foreach ($participant_fields as $key => $label) {
+        if (empty($_POST[$key])) {
+            \wc_add_notice(sprintf('%s jest polem wymaganym.', '<strong>' . $label . '</strong>'), 'error');
+        }
+    }
+
+    if (!empty($_POST['participant_option_one']) && $_POST['participant_option_one'] === 'yes') {
+        if (empty($_POST['participant_option_two'])) {
+            \wc_add_notice('<strong>Nr prawa wykonywania zawodu</strong> jest polem wymaganym.', 'error');
+        }
+    }
+}, 20);
+
+/*--- Walidacja pól firmy ---*/
+
+add_action('woocommerce_checkout_process', function () {
+    if (empty($_POST['billing_first_name'])) {
+        $is_business = isset($_POST['billing_is_business']) && $_POST['billing_is_business'] === 'yes';
+        if ($is_business) {
+            \wc_add_notice('<strong>Nazwa firmy/instytucji</strong> jest polem wymaganym.', 'error');
+        }
+    }
+
+    if (empty($_POST['billing_last_name'])) {
+        $is_business = isset($_POST['billing_is_business']) && $_POST['billing_is_business'] === 'yes';
+        if ($is_business) {
+            \wc_add_notice('<strong>NIP</strong> jest polem wymaganym.', 'error');
+        }
+    }
+}, 100);
+
+add_action('woocommerce_after_checkout_billing_form', function () {
+    echo '<input type="hidden" name="billing_is_business" id="billing_is_business" value="no" />';
+});
+
+/*--- ZGODY ---*/
+
+add_action('woocommerce_review_order_before_submit', function () {
+    \woocommerce_form_field('agreement_1', [
+        'type' => 'checkbox',
+        'class' => ['form-row', 'validate-required'],
+        'input_class' => ['agreement-checkbox'],
+        'required' => true,
+        'label' => 'Akceptuję, że faktura VAT zostanie wystawiona na dane podane w formularzu rejestracyjnym, bez możliwości wystawienia korekty. Dlatego prosimy upewnić się, że wprowadzone dane są prawidłowe.&nbsp;<span class="required">*</span>',
+    ]);
+
+    \woocommerce_form_field('agreement_2', [
+        'type' => 'checkbox',
+        'class' => ['form-row'],
+        'input_class' => ['agreement-checkbox'],
+        'label' => 'Wyrażam zgodę na przetwarzanie moich danych osobowych (imię, nazwisko, grupa zawodowa, adres e-mail) przez Evereth Publishing Sp. z o.o. w celu przesyłania informacji marketingowych dotyczących produktów wydawniczych i usług oferowanych przez Evereth Publishing Sp. z o.o. Zgoda może zostać przez Ciebie wycofana w każdej chwili.',
+    ]);
+
+    \woocommerce_form_field('agreement_3', [
+        'type' => 'checkbox',
+        'class' => ['form-row'],
+        'input_class' => ['agreement-checkbox'],
+        'label' => 'Wyrażam zgodę na wykorzystanie mojego adresu e-mail w celu przesyłania informacji o produktach i usługach zaufanych partnerów Evereth Publishing Sp. z o.o., dzięki czemu będziemy mogli informować Cię o ofercie firm współpracujących z nami. Zgoda może zostać przez Ciebie wycofana w każdej chwili.',
+    ]);
+}, 9);
+
+add_action('woocommerce_checkout_terms_and_conditions', function () {
+    \woocommerce_form_field('select_all_agreements', [
+        'type' => 'checkbox',
+        'class' => ['form-row', 'select-all-agreements-row'],
+        'input_class' => ['select-all-agreements-checkbox'],
+        'label' => 'Zaznacz wszystkie',
+    ]);
+}, 25);
+
+add_action('woocommerce_checkout_process', function () {
+    if (empty($_POST['agreement_1'])) {
+        \wc_add_notice('Musisz zaakceptować warunki dotyczące faktury VAT.', 'error');
+    }
+    if (empty($_POST['terms'])) {
+        \wc_add_notice('Proszę przeczytać i zaakceptować warunki i zasady, aby kontynuować zamówienie.', 'error');
+    }
+});
+
+add_action('woocommerce_checkout_create_order', function ($order) {
+    if (!empty($_POST['agreement_1'])) {
+        $order->update_meta_data('Zgoda (faktura VAT)', 'Tak');
+    }
+    if (!empty($_POST['agreement_2'])) {
+        $order->update_meta_data('Zgoda (marketing Evereth)', 'Tak');
+    }
+    if (!empty($_POST['agreement_3'])) {
+        $order->update_meta_data('Zgoda (marketing partnerzy)', 'Tak');
+    }
+});
+
+
+/*--- DISABLE AUTOCOMPLETE ---*/

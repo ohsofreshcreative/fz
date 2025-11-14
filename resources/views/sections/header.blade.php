@@ -28,7 +28,7 @@ use App\Walkers\MobileDropdownWalker;
 
 
 			<div class="">
-				<a href="/kontakt/" class="block w-full white-btn-s">
+				<a href="/zarejestruj-sie//" class="block w-full white-btn-s">
 					Zarejestruj się
 				</a>
 			</div>
@@ -98,13 +98,11 @@ use App\Walkers\MobileDropdownWalker;
 			@endif
 
 			<div class="mt-8">
-				<a href="/kontakt/" class="block w-full second-btn">
-					Umów konsultację
+				<a href="/zarejestruj-sie/" class="block w-full second-btn">
+					Zarejestruj się
 				</a>
 			</div>
 		</div>
 
-		<img class="absolute top-0 left-0" src="/wp-content/uploads/2025/08/hero-shape.svg" />
-		<img class="absolute bottom-0 left-0 scale-y-[-1]" src="/wp-content/uploads/2025/08/hero-shape.svg" />
 	</div>
 </header>
