@@ -22,9 +22,11 @@ defined( 'ABSPATH' ) || exit;
  */
 do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
+<p>Ta wiadomość jest generowana automatycznie, prosimy na nią nie odpowiadać</p>
+
 <p>Dzień dobry,</p>
 
-<p>bardzo dziękujemy za rejestrację na konferencję VI Forum Zakażeń, które odbędzie się w dniach 13-15 maja 2026 r. w Hotelu Windsor w Jachrance. <b>Twoje zgłoszenie zostało przyjęte.</b></p>
+<p>bardzo dziękujemy za rejestrację na konferencję VI Forum Zakażeń, która odbędzie się w dniach 13-15 maja 2026 r. w Hotelu Windsor w Jachrance. <b>Twoje zgłoszenie zostało przyjęte.</b></p>
 
 <b>Dane do przelewu:</b>
 <p>Evereth Publishing Sp. z o.o.<br>

@@ -83,3 +83,13 @@ add_filter('woocommerce_form_field', function ($field, $key, $args, $value) {
 
     return $field;
 }, 10, 4);
+
+
+/**
+ * Zmiana placeholdera dla uwag do zamówienia w WooCommerce.
+ */
+add_filter('woocommerce_checkout_fields', function ($fields) {
+    $fields['order']['order_comments']['placeholder'] = '';
+    $fields['order']['order_comments']['label'] = 'Uwagi do rejestracji';
+    return $fields;
+});
