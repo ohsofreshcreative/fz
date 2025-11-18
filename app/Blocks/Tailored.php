@@ -5,58 +5,72 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class TextImage extends Block
+class Tailored extends Block
 {
-	public $name = 'Treść oraz zdjęcie';
-	public $description = 'text-image';
-	public $slug = 'text-image';
+	public $name = 'Liczby z tłem';
+	public $description = 'tailored';
+	public $slug = 'tailored';
 	public $category = 'formatting';
-	public $icon = 'align-pull-left';
-	public $keywords = ['tresc', 'zdjecie'];
+	public $icon = 'yes-alt';
+	public $keywords = ['tailored', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
 		'jsx' => true,
-		'anchor' => true,
-		'customClassName' => true,
 	];
 
 	public function fields()
 	{
-		$text_image = new FieldsBuilder('text-image');
+		$tailored = new FieldsBuilder('tailored');
 
-		$text_image
-			->setLocation('block', '==', 'acf/text-image') // ważne!
+		$tailored
+			->setLocation('block', '==', 'acf/tailored') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Treść oraz zdjęcie',
+				'label' => 'Liczby',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- GROUP ---*/
-			->addTab('Elementy', ['placement' => 'top'])
-			->addGroup('g_textimg', ['label' => ''])
+			/*--- FIELDS ---*/
+			->addTab('Treści', ['placement' => 'top'])
+			->addGroup('g_tailored', ['label' => ''])
+
 			->addImage('image', [
-				'label' => 'Obraz',
+				'label' => 'Tło',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'thumbnail',
 			])
-			->addText('subtitle', ['label' => 'Tytuł'])
-			->addText('title', ['label' => 'Nagłówek'])
-			->addWysiwyg('txt', [
-				'label' => 'Treść',
-				'tabs' => 'all', // 'visual', 'text', 'all'
-				'toolbar' => 'full', // 'basic', 'full'
-				'media_upload' => true,
+			->addText('header', ['label' => 'Nagłówek'])
+
+			->addRepeater('r_tailored', [
+				'label' => 'Kafelki',
+				'layout' => 'table', // 'row', 'block', albo 'table'
+				'min' => 4,
+				'max' => 4,
+				'button_label' => 'Dodaj kafelek'
 			])
-			->addLink('button', [
-				'label' => 'Przycisk',
-				'return_format' => 'array',
+			->addImage('img', [
+				'label' => 'Obraz',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'medium',
 			])
+			->addText('number', [
+				'label' => 'Liczba',
+			])
+			->addText('header', [
+				'label' => 'Nagłówek',
+			])
+			->addTextarea('txt', [
+				'label' => 'Opis',
+				'rows' => 4,
+				'new_lines' => 'br',
+			])
+			->endRepeater()
+
 			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
@@ -108,13 +122,13 @@ class TextImage extends Block
                 'allow_null' => 0,
             ]);
 
-		return $text_image;
+		return $tailored;
 	}
 
 	public function with()
 	{
 		return [
-			'g_textimg' => get_field('g_textimg'),
+			'g_tailored' => get_field('g_tailored'),
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
 			'flip' => get_field('flip'),
