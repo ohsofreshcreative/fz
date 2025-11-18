@@ -41,13 +41,8 @@ class TextTiles extends Block
 			/*--- TAB #1 ---*/
 			->addTab('Treści', ['placement' => 'top'])
 			->addGroup('g_tiles', ['label' => ''])
-			->addImage('image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
-			])
-			->addText('subtitle', ['label' => 'Śródtytuł'])
 			->addText('title', ['label' => 'Tytuł'])
+			->addText('header', ['label' => 'Nagłówek'])
 			->addTextarea('text', [
 				'label' => 'Opis',
 				'rows' => 4,
@@ -62,22 +57,21 @@ class TextTiles extends Block
 
 			/*--- TAB #2 ---*/
 			->addTab('Kafelki', ['placement' => 'top'])
+			->addText('header', ['label' => 'Nagłówek'])
 			->addRepeater('repeater', [
 				'label' => 'Kafelki',
 				'layout' => 'table', // 'row', 'block', albo 'table'
 				'min' => 1,
 				'button_label' => 'Dodaj kafelek'
 			])
-			->addImage('card_image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
-			])
-			->addText('card_title', [
+			->addText('header', [
 				'label' => 'Nagłówek',
 			])
-			->addTextarea('card_txt', [
+			->addTextarea('txt', [
 				'label' => 'Opis',
+				'rows' => 2,
+				'placeholder' => 'Wpisz opis...',
+				'new_lines' => 'br',
 			])
 			->endRepeater()
 

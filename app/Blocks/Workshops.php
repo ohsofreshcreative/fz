@@ -5,70 +5,64 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Tailored extends Block
+class Workshops extends Block
 {
-	public $name = 'Liczby z tłem';
-	public $description = 'tailored';
-	public $slug = 'tailored';
+	public $name = 'Warsztaty w kameralnym gronie';
+	public $description = 'workshops';
+	public $slug = 'workshops';
 	public $category = 'formatting';
-	public $icon = 'yes-alt';
-	public $keywords = ['tailored', 'kafelki'];
+	public $icon = 'groups';
+	public $keywords = ['workshops', 'zdjecie'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
 		'jsx' => true,
+		'anchor' => true,
+		'customClassName' => true,
 	];
 
 	public function fields()
 	{
-		$tailored = new FieldsBuilder('tailored');
+		$workshops = new FieldsBuilder('workshops');
 
-		$tailored
-			->setLocation('block', '==', 'acf/tailored') // ważne!
+		$workshops
+			->setLocation('block', '==', 'acf/workshops') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Liczby',
+				'label' => 'Warsztaty w kameralnym gronie',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- FIELDS ---*/
-			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('g_tailored', ['label' => ''])
+			/*--- GROUP ---*/
+			->addTab('Elementy', ['placement' => 'top'])
+			->addGroup('g_workshops', ['label' => ''])
 			->addImage('image', [
-				'label' => 'Tło',
+				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'thumbnail',
 			])
-			->addText('header', ['label' => 'Nagłówek'])
-			->addRepeater('r_tailored', [
-				'label' => 'Kafelki',
-				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 4,
-				'max' => 4,
-				'button_label' => 'Dodaj kafelek'
-			])
-			->addImage('img', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
-			])
-			->addText('number', [
-				'label' => 'Liczba',
-			])
-			->addText('header', [
-				'label' => 'Nagłówek',
-			])
-			->addTextarea('txt', [
-				'label' => 'Opis',
+			->addText('subtitle', ['label' => 'Tytuł'])
+			->addText('title', ['label' => 'Nagłówek'])
+			->addTextarea('text1', [
+				'label' => 'Opis #1',
 				'rows' => 4,
+				'placeholder' => 'Wpisz opis...',
 				'new_lines' => 'br',
 			])
-			->endRepeater()
-
+			->addTextarea('text2', [
+				'label' => 'Opis #2',
+				'rows' => 4,
+				'placeholder' => 'Wpisz opis...',
+				'new_lines' => 'br',
+			])
+			->addLink('button', [
+				'label' => 'Przycisk',
+				'return_format' => 'array',
+			])
 			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
@@ -105,28 +99,28 @@ class Tailored extends Block
 				'ui_off_text' => 'Nie',
 			])
 			->addSelect('background', [
-                'label' => 'Kolor tła',
-                'choices' => [
-                    'none' => 'Brak (domyślne)',
-                    'section-white' => 'Białe',
-                    'section-light' => 'Jasne',
-                    'section-gray' => 'Szare',
-                    'section-brand' => 'Marki',
-                    'section-gradient' => 'Gradient',
-                    'section-dark' => 'Ciemne',
-                ],
-                'default_value' => 'none',
-                'ui' => 0, // Ulepszony interfejs
-                'allow_null' => 0,
-            ]);
+				'label' => 'Kolor tła',
+				'choices' => [
+					'none' => 'Brak (domyślne)',
+					'section-white' => 'Białe',
+					'section-light' => 'Jasne',
+					'section-gray' => 'Szare',
+					'section-brand' => 'Marki',
+					'section-gradient' => 'Gradient',
+					'section-dark' => 'Ciemne',
+				],
+				'default_value' => 'none',
+				'ui' => 0, // Ulepszony interfejs
+				'allow_null' => 0,
+			]);
 
-		return $tailored;
+		return $workshops;
 	}
 
 	public function with()
 	{
 		return [
-			'g_tailored' => get_field('g_tailored'),
+			'g_workshops' => get_field('g_workshops'),
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
 			'flip' => get_field('flip'),

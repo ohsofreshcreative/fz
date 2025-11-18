@@ -40,9 +40,9 @@ class Tiles extends Block
 
 			/*--- TAB #1 ---*/
 			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('tiles', ['label' => ''])
+			->addGroup('g_tiles', ['label' => ''])
 			->addText('title', ['label' => 'Tytuł'])
-			->addText('subtitle', ['label' => 'Śródtytuł'])
+			->addText('header', ['label' => 'Nagłówek'])
 			->addTextarea('text', [
 				'label' => 'Opis',
 				'rows' => 4,
@@ -53,7 +53,7 @@ class Tiles extends Block
 
 			/*--- TAB #2 ---*/
 			->addTab('Kafelki', ['placement' => 'top'])
-			->addRepeater('repeater', [
+			->addRepeater('r_tiles', [
 				'label' => 'Kafelki',
 				'layout' => 'table', // 'row', 'block', albo 'table'
 				'min' => 1,
@@ -63,7 +63,7 @@ class Tiles extends Block
 			->addImage('card_image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
+				'preview_size' => 'thumbnail',
 			])
 			->addText('card_title', [
 				'label' => 'Nagłówek',
@@ -119,8 +119,8 @@ class Tiles extends Block
 	public function with()
 	{
 		return [
-			'tiles' => get_field('tiles'),
-			'repeater' => get_field('repeater'),
+			'g_tiles' => get_field('g_tiles'),
+			'r_tiles' => get_field('r_tiles'),
 			'flip' => get_field('flip'),
 			'wide' => get_field('wide'),
 			'lightbg' => get_field('lightbg'),

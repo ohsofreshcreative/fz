@@ -33,6 +33,10 @@
 @import '../css/blocks/contact.scss';
 @import '../css/blocks/duo.scss';
 @import '../css/blocks/tailored.scss';
+@import '../css/blocks/workshops.scss';
+@import '../css/blocks/reach.scss';
+@import '../css/blocks/text-tiles.scss';
+@import '../css/blocks/tiles.scss';
 
 
 /*-- NOT USED --*/

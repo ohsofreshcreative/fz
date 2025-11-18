@@ -5,70 +5,72 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Tailored extends Block
+class Reach extends Block
+
 {
-	public $name = 'Liczby z tłem';
-	public $description = 'tailored';
-	public $slug = 'tailored';
+	public $name = 'Dołącz do nas';
+	public $description = 'reach';
+	public $slug = 'reach';
 	public $category = 'formatting';
-	public $icon = 'yes-alt';
-	public $keywords = ['tailored', 'kafelki'];
+	public $icon = 'email';
+	public $keywords = ['formularz', 'dołącz'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
 		'jsx' => true,
+		'anchor' => true,
+		'customClassName' => true,
 	];
 
 	public function fields()
 	{
-		$tailored = new FieldsBuilder('tailored');
+		$reach = new FieldsBuilder('reach');
 
-		$tailored
-			->setLocation('block', '==', 'acf/tailored') // ważne!
+		$reach
+			->setLocation('block', '==', 'acf/reach') // ważne!
+			/*--- FIELDS ---*/
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Liczby',
+				'label' => 'Dołącz do nas',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- FIELDS ---*/
-			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('g_tailored', ['label' => ''])
+			/*--- TAB #1 ---*/
+			->addTab('Dane', ['placement' => 'top'])
+			->addGroup('g_reach_1', ['label' => ''])
 			->addImage('image', [
 				'label' => 'Tło',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'thumbnail',
 			])
+			->addText('title', ['label' => 'Tytuł'])
 			->addText('header', ['label' => 'Nagłówek'])
-			->addRepeater('r_tailored', [
-				'label' => 'Kafelki',
-				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 4,
-				'max' => 4,
-				'button_label' => 'Dodaj kafelek'
-			])
-			->addImage('img', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
-			])
-			->addText('number', [
-				'label' => 'Liczba',
-			])
-			->addText('header', [
-				'label' => 'Nagłówek',
-			])
-			->addTextarea('txt', [
+			->addWysiwyg('txt', [
 				'label' => 'Opis',
-				'rows' => 4,
-				'new_lines' => 'br',
+				'tabs' => 'all',
+				'toolbar' => 'full',
+				'media_upload' => false,
 			])
-			->endRepeater()
-
+			->addText('person', ['label' => 'Nagłówek'])
+			->addText('phone', [
+				'label' => 'Numer telefonu',
+			])
+			->addText('mail', [
+				'label' => 'Adres e-mail',
+			])
+			->endGroup()
+			/*--- TAB #2 ---*/
+			->addTab('Formularz', ['placement' => 'top'])
+			->addGroup('g_reach_2', ['label' => ''])
+			->addText('title', ['label' => 'Tytuł'])
+			->addText('shortcode', [
+				'label' => 'Kod formularza',
+				'instructions' => 'Wklej shortcode formularza, np. [reach-form-7 id="84690e3" title="reach form 1"]',
+			])
 			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
@@ -120,13 +122,15 @@ class Tailored extends Block
                 'allow_null' => 0,
             ]);
 
-		return $tailored;
+
+		return $reach;
 	}
 
 	public function with()
 	{
 		return [
-			'g_tailored' => get_field('g_tailored'),
+			'g_reach_1' => get_field('g_reach_1'),
+			'g_reach_2' => get_field('g_reach_2'),
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
 			'flip' => get_field('flip'),

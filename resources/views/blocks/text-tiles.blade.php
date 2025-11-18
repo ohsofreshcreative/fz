@@ -10,47 +10,33 @@ $sectionClass .= $nomt ? ' !mt-0' : '';
 
 <!--- text-tiles --->
 
-<section data-gsap-anim="section" class="text-tiles -smt {{ $sectionClass }}">
-	<div class="__wrapper c-main">
+<section data-gsap-anim="section" class="b-text-tiles -smt {{ $sectionClass }}">
+	<div class="__wrapper c-main grid grid-cols-1 md:grid-cols-2 gap-10">
 
-		<div class="w-full md:w-1/2">
-			@if (!empty($g_tiles['subtitle']))
-			<p class="subtitle-s">{{ strip_tags($g_tiles['subtitle']) }}</p>
-			@endif
+		<div class="">
 			@if (!empty($g_tiles['title']))
-			<h2 data-gsap-element="header" class="">{{ strip_tags($g_tiles['title']) }}</h2>
+			<p class="subtitle-s">{{ strip_tags($g_tiles['title']) }}</p>
+			@endif
+			@if (!empty($g_tiles['header']))
+			<h2 data-gsap-element="header" class="text-white">{{ strip_tags($g_tiles['header']) }}</h2>
+			@endif
+
+			@if (!empty($g_tiles['text']))
+			<p data-gsap-element="txt" class="__txt text-white mt-6">{{ strip_tags($g_tiles['text']) }}</p>
 			@endif
 		</div>
 
-		<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 mt-16">
+		<div class="order2">
 
-			<div class="__content relative lg:sticky top-8 h-max order1">
-				@if (!empty($g_tiles['image']))
-				<div class="image-reveal-wrapper" data-gsap-element="img-right" class="__img order1">
-					<img class="object-cover w-full __img img-xl radius-img" src="{{ $g_tiles['image']['url'] }}" alt="{{ $g_tiles['image']['alt'] ?? '' }}">
-				</div>
-				@endif
-
-				@if (!empty($g_tiles['text']))
-				<p data-gsap-element="txt" class="__txt mt-6">{{ strip_tags($g_tiles['text']) }}</p>
-				@endif
-
-				@if (!empty($g_tiles['button']))
-				<a data-gsap-element="button" class="main-btn m-btn" href="{{ $g_tiles['button']['url'] }}">{{ $g_tiles['button']['title'] }}</a>
-				@endif
+			@foreach ($repeater as $item)
+			<div data-gsap-element="card" class="__card flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-10 border-s radius p-6 md:p-10 mb-6">
+				<p class="text-h2 font-bold secondary">{{ $item['header'] }}</p>
+				<p class="text-white text-2xl">{{ $item['txt'] }}</p>
 			</div>
-
-			<div class="order2">
-
-				@foreach ($repeater as $item)
-				<div data-gsap-element="card" class="__card bg-white border-s rounded-3xl p-6 md:p-10 mb-6">
-					<img class="" src="{{ $item['card_image']['url'] }}" alt="{{ $item['card_image']['alt'] ?? '' }}" />
-					<h6 class="mt-6">{{ $item['card_title'] }}</h6>
-					<p class="mt-2">{{ $item['card_txt'] }}</p>
-				</div>
-				@endforeach
-			</div>
-
+			@endforeach
+			@if (!empty($g_tiles['button']))
+			<a data-gsap-element="button" class="second-btn m-btn" href="{{ $g_tiles['button']['url'] }}">{{ $g_tiles['button']['title'] }}</a>
+			@endif
 		</div>
 	</div>
 
