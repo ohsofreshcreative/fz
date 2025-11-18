@@ -558,5 +558,11 @@ add_action('woocommerce_checkout_create_order', function ($order) {
     }
 });
 
+/*--- SET PAYU AS DEFAULT ---*/
 
-/*--- DISABLE AUTOCOMPLETE ---*/
+add_filter( 'woocommerce_default_gateway', 'osf_set_default_payu_gateway' );
+
+function osf_set_default_payu_gateway( $default ) {
+    // ID brany z value="" w input – u Ciebie: value="payulistbanks"
+    return 'payulistbanks';
+}

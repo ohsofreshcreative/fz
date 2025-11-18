@@ -43,22 +43,17 @@ class Contact extends Block
 			->addTab('Dane', ['placement' => 'top'])
 			->addGroup('g_contact_1', ['label' => ''])
 			->addText('title', ['label' => 'Tytuł'])
+			->addWysiwyg('txt', [
+				'label' => 'Opis',
+				'tabs' => 'all',
+				'toolbar' => 'full',
+				'media_upload' => false,
+			])
 			->addText('phone', [
 				'label' => 'Numer telefonu',
 			])
 			->addText('mail', [
 				'label' => 'Adres e-mail',
-			])
-			->addImage('image', [
-				'label' => 'Obraz',
-				'return_format' => 'array',
-				'preview_size' => 'medium',
-			])
-			->addWysiwyg('adres', [
-				'label' => 'Adres',
-				'tabs' => 'all',
-				'toolbar' => 'full',
-				'media_upload' => false,
 			])
 			->endGroup()
 			/*--- TAB #2 ---*/

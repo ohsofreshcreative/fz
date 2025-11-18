@@ -351,3 +351,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     initAgreementCheckboxes();
 });
+
+/*--- SET PAYU AS DEFAULT ---*/
+
+jQuery(function($) {
+    function selectPayU() {
+        var $input = $('#payment_method_payulistbanks');
+        if ($input.length) {
+            $input.prop('checked', true).trigger('change');
+        }
+    }
+
+    // Po załadowaniu strony
+    selectPayU();
+
+    // Po ajaxowym przeładowaniu checkoutu
+    $(document.body).on('updated_checkout', function() {
+        selectPayU();
+    });
+});
+

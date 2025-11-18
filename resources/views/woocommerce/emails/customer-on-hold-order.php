@@ -24,7 +24,7 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <p>Dzień dobry,</p>
 
-<p>bardzo dziękujemy za rejestrację na konferencję V Forum Zakażeń, która odbędzie się w dniach 31 marca - 2 kwietnia 2025 r., w Hotelu Bachleda Kasprowy w Zakopanem. <b>Twoje zgłoszenie zostało przyjęte.</b></p>
+<p>bardzo dziękujemy za rejestrację na konferencję VI Forum Zakażeń, które odbędzie się w dniach 13-15 maja 2026 r. w Hotelu Windsor w Jachrance. <b>Twoje zgłoszenie zostało przyjęte.</b></p>
 
 <b>Dane do przelewu:</b>
 <p>Evereth Publishing Sp. z o.o.<br>
@@ -32,7 +32,7 @@ ul. Paprociowa 13<br>
 04-751 Warszawa<br><br>
 <b>nr konta:</b><br>
 63 1090 1753 0000 0001 4680 1378<br>
-<b>tytuł:</b><br> imię i nazwisko uczestnika – konferencja FZ2025.</p><br>
+<b>tytuł:</b><br> imię i nazwisko uczestnika – konferencja FZ2026.</p><br>
 
 <p>Wysokość opłat znajdziesz tutaj: <a href="https://forumleczeniaran.com/oplata-konferencyjna/">Opłata konferencyjna</a></p><br>
 

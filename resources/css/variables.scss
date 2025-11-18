@@ -1296,7 +1296,7 @@ article.post:hover img {
 
 /*--- !SHOP ---*/
 
-.woocommerce-notices-wrapper {
+.woocommerce-notices-wrapper, .product_meta {
   display: none;
 }
 
@@ -1347,6 +1347,16 @@ article.post:hover img {
 }
 
 /*--- !CHECKOUT ---*/
+
+#payment > ul > li.wc_payment_method.payment_method_payulistbanks > label > img, #payment > ul > li.wc_payment_method.payment_method_payucreditcard > label > img{
+	filter: invert(1) grayscale(1);
+	margin: -7px 0 0 .5em;
+	display: inline-block;;
+}
+
+.payu-list-banks label {
+	background-color: #FFF;;
+}
 
 .woocommerce-checkout {
   .woocommerce {
@@ -1516,11 +1526,6 @@ article.post:hover img {
   border-right-color: transparent;
   border-left-color: transparent;
   border-top-color: transparent;
-}
-
-.wc_payment_method.payment_method_bacs label {
-  font-size: 18px;
-  font-weight: 600;
 }
 
 .woocommerce form .form-row .required {

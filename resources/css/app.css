@@ -29,6 +29,8 @@
 @import '../css/blocks/text-text.scss';
 @import '../css/blocks/info.scss';
 @import '../css/blocks/gallery.scss';
+@import '../css/blocks/connect.scss';
+@import '../css/blocks/contact.scss';
 
 
 /*-- NOT USED --*/
@@ -48,4 +50,3 @@
 @import '../css/blocks/proces.scss';
 @import '../css/blocks/steps.scss';
 @import '../css/blocks/path.scss';
-@import '../css/blocks/contact.scss';

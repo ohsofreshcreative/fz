@@ -61,3 +61,25 @@ add_action('init', function () {
         echo '<h1 class="product_title entry-title">' . esc_html($custom_text) . get_the_title() . '</h1>';
     }, 5);
 });
+
+/*--- CHANGE BILLING ADDRESS HEADING ---*/
+
+add_filter('gettext', function ($translated, $text, $domain) {
+    // Interesuje nas tylko WooCommerce
+    if ($domain === 'woocommerce' && $translated === 'Adres rozliczeniowy') {
+        return 'Dane do faktury';
+    }
+
+    return $translated;
+}, 10, 3);
+
+/*--- DISABLE AUTOCOMPLETE ---*/
+
+add_filter('woocommerce_form_field', function ($field, $key, $args, $value) {
+    // jeśli pole zawiera input i nie ma jeszcze autocomplete
+    if (strpos($field, '<input') !== false && strpos($field, 'autocomplete=') === false) {
+        $field = str_replace('<input', '<input autocomplete="off"', $field);
+    }
+
+    return $field;
+}, 10, 4);
