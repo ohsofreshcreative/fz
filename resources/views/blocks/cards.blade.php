@@ -25,10 +25,10 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 			</div>
 
 			@if (!empty($g_cards['r_cards']))
-            @php
-                $gridCols = $grid_cols ?? 4; // Użyj 4 jako domyślnej wartości, jeśli nic nie wybrano
-                $gridClass = 'grid-cols-1 lg:grid-cols-' . $gridCols;
-            @endphp
+			@php
+			$gridCols = $grid_cols ?? 4; // Użyj 4 jako domyślnej wartości, jeśli nic nie wybrano
+			$gridClass = 'grid-cols-1 lg:grid-cols-' . $gridCols;
+			@endphp
 
 			<div data-gsap-element="stagger" class="grid {{ $gridClass }} gap-8 mt-14">
 				@foreach ($g_cards['r_cards'] as $item)
@@ -36,6 +36,10 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 					<img class="mb-6" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] ?? '' }}" />
 					<h6 class="m-title text-white">{{ $item['header'] }}</h6>
 					<p class="text-white">{{ $item['text'] }}</p>
+
+					@if (!empty($item['button']))
+					<a data-gsap-element="btn" class="underline-btn m-btn" href="{{ $item['button']['url'] }}" target="{{ $item['button']['target'] }}">{{ $item['button']['title'] }}</a>
+					@endif
 				</div>
 				@endforeach
 			</div>
@@ -44,4 +48,4 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 		</div>
 	</div>
 
-</section> 
+</section>

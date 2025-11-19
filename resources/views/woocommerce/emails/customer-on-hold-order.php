@@ -36,12 +36,12 @@ ul. Paprociowa 13<br>
 63 1090 1753 0000 0001 4680 1378<br>
 <b>tytuł:</b><br> imię i nazwisko uczestnika – konferencja FZ2026.</p><br>
 
-<p>Wysokość opłat znajdziesz tutaj: <a href="https://forumleczeniaran.com/oplata-konferencyjna/">Opłata konferencyjna</a></p><br>
+<p>Wysokość opłat znajdziesz tutaj: <a href="https://forumzakazen.com/oplata-konferencyjna/">Opłata konferencyjna</a></p><br>
 
 <p>Prosimy o sprawdzenie, czy dane zawarte w formularzu są poprawne.</p><br>
 <p>W przypadku zauważonych błędów prosimy o dokonanie ponownej rejestracji na konferencję.</p><br>
 
-<p>W przypadku nieuiszczenia przez uczestnika opłaty w ciągu 7 dni Organizator jest zmuszony skreślić go z listy. Jeśli pomimo to uczestnik wyraża chęć wzięcia udziału w konferencji, konieczna jest ponowna rejestracja i dokonanie wpłaty (według cennika i obowiązującego terminarza znajdującego się w zakładce <a href="https://forumleczeniaran.com/oplata-konferencyjna/">Opłata konferencyjna</a>).</p>
+<p>W przypadku nieuiszczenia przez uczestnika opłaty w ciągu 7 dni Organizator jest zmuszony skreślić go z listy. Jeśli pomimo to uczestnik wyraża chęć wzięcia udziału w konferencji, konieczna jest ponowna rejestracja i dokonanie wpłaty (według cennika i obowiązującego terminarza znajdującego się w zakładce <a href="https://forumzakazen.com/oplata-konferencyjna/">Opłata konferencyjna</a>).</p>
 
 <?php
 

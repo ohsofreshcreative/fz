@@ -18,7 +18,7 @@ use App\Walkers\MobileDropdownWalker;
 		<nav class="ml-6 lg:ml-15 nav-primary w-full" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}">
 			{!! wp_nav_menu([
 			'theme_location' => 'primary_navigation',
-			'menu_class' => 'nav flex gap-x-3 lg:gap-x-6 text-sm font-medium items-center', 
+			'menu_class' => 'nav flex gap-x-3 lg:gap-x-6 text-lg font-medium justify-center items-center', 
 			'container' => false,
 			'echo' => false,
 			'walker' => new DropdownWalker(),

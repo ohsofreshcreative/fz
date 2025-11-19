@@ -223,7 +223,18 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!checkoutForm) {
     return; // Wyjdź, jeśli to nie jest strona checkout
   }
+  // --- AGRESYWNE WYŁĄCZANIE AUTOCOMPLETE ---
+  const inputs = checkoutForm.querySelectorAll('input.input-text, select');
+  
+  inputs.forEach(input => {
+      // Ustawiamy losową wartość atrybutu name (tylko dla autocomplete, nie zmieniamy name formularza)
+      input.setAttribute('autocomplete', 'new-password');
+      input.setAttribute('autocorrect', 'off');
+      input.setAttribute('autocapitalize', 'off');
+      input.setAttribute('spellcheck', 'false');
+  });
 
+  
   const individualBtn = document.getElementById('individual-btn');
   const businessBtn = document.getElementById('business-btn');
   

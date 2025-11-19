@@ -67,6 +67,10 @@ class Cards extends Block
 				'rows' => 4,
 				'new_lines' => 'br',
 			])
+			->addLink('button', [
+				'label' => 'Przycisk',
+				'return_format' => 'array',
+			])
 			->endRepeater()
 
 			->endGroup()

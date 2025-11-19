@@ -937,6 +937,13 @@ h6,
 	margin-right: 16px;
 }
 
+.so__icons {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    z-index: 999999999999;
+}
+
 /*--- !MENU  ---*/
 
 .fixed-top {
@@ -969,7 +976,7 @@ h6,
 
 .fixed-top #menu-menu a {
 	color: #fff !important;
-	font-size: 14px;
+	font-size: 15px;
 }
 
 .fixed-top.scrollUp {
@@ -1125,10 +1132,12 @@ input[type='checkbox'] {
 
 .wpcf7 form .wpcf7-response-output {
 	border: none;
+	color:#FFF;
 	margin: 0;
 	padding: 0;
 	margin-top: 24px;
-	border-bottom: 1px solid var(--primary) !important;
+	border-bottom: 1px solid var(--s-300) !important;
+	width:max-content
 }
 
 /*--- !CONTACT ---*/
@@ -1368,10 +1377,18 @@ article.post:hover img {
 }
 
 .woocommerce-checkout {
+	.woocommerce-bacs-bank-details {
+		display: none !important;
+	}
+	.woocommerce-order-details {
+		margin-top:40px;
+	}
 	.woocommerce {
 		margin-top: 40px;
 	}
-
+p {
+	color:#FFF !important;
+}
 	h3 {
 		color: #fff;
 		margin-bottom: 40px;

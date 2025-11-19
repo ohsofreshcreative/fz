@@ -8,7 +8,7 @@ $sectionClass .= $flip ? ' order-flip' : '';
 <section
 	data-gsap-anim="section"
 	@if(!empty($section_id)) id="{{ $section_id }}" @endif
-	class="hero bg-secondary relative -menu-pt min-h-[100svh] {{ $sectionClass }} {{ $section_class }}">
+	class="hero bg-secondary relative -menu-pt min-h-[85svh] {{ $sectionClass }} {{ $section_class }}">
 
 	@if (!empty($g_hero['use_video']) && !empty($g_hero['video']))
 	<video
@@ -34,11 +34,11 @@ $sectionClass .= $flip ? ' order-flip' : '';
 			<h5 data-gsap-element="txt" class="text-white mt-2">
 				{!! $g_hero['subtitle'] !!}
 			</h5>
-			<div data-gsap-element="txt" class="text-white mt-2">
+			<div data-gsap-element="txt" class="__txt text-white mt-2">
 				{!! $g_hero['txt'] !!}
 			</div>
 
-			<div data-gsap-element="info" class="flex gap-6 mt-6">
+			<div data-gsap-element="info" class="__info flex gap-6 mt-6">
 				<div class="flex items-center gap-2">
 					<div>
 						<img src="/wp-content/uploads/2025/11/calendar.svg" />

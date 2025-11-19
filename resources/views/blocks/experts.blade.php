@@ -14,13 +14,13 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 
 	<div class="flex">
 		@if (!empty($gallery))
-		<div class="swiper usage-swiper c!overflow-visible w-1/2">
+		<div class="swiper usage-swiper !overflow-hidden w-1/2">
 
 			<div class="swiper-wrapper">
 				@foreach($gallery as $image)
-				<div class="swiper-slide">
-					{!! wp_get_attachment_image($image['ID'], 'large', false, ['class' => 'w-full h-auto object-cover']) !!}
-				</div>
+				 <div class="swiper-slide">
+                    {!! wp_get_attachment_image($image['ID'], 'full', false, ['class' => 'w-full h-full object-cover']) !!}
+                </div>
 				@endforeach
 			</div>
 		</div>
