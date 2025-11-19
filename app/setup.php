@@ -368,9 +368,9 @@ add_filter('woocommerce_billing_fields', function ($fields) {
         $fields['billing_company']['class'][] = 'hidden';
     }
 
-    if (isset($fields['billing_vat_id'])) {
-        $fields['billing_vat_id']['label'] = 'NIP';
-        $fields['billing_vat_id']['class'][] = 'hidden';
+    if (isset($fields['billing_tax_no'])) {
+        $fields['billing_tax_no']['label'] = 'NIP';
+        $fields['billing_tax_no']['class'][] = 'hidden';
     }
 
     return $fields;

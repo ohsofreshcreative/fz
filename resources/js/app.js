@@ -241,8 +241,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const firstNameField = document.getElementById('billing_first_name_field');
   const lastNameField = document.getElementById('billing_last_name_field');
   const companyField = document.getElementById('billing_company_field');
-  // Pole NIP może mieć różne ID (np. billing_nip lub billing_vat_id)
-  const nipField = document.getElementById('billing_nip_field') || document.getElementById('billing_vat_id_field');
+  // Pole NIP może mieć różne ID (np. billing_nip lub billing_tax_no)
+  const nipField = document.getElementById('billing_tax_no_field') || document.getElementById('billing_tax_no_field');
   
   const firstNameLabel = document.querySelector('label[for="billing_first_name"]');
   const lastNameLabel = document.querySelector('label[for="billing_last_name"]');
