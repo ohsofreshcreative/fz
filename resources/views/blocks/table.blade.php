@@ -21,12 +21,12 @@ $sectionClass .= ' ' . $background;
 			<h3 class="">{{ strip_tags($g_table['header']) }}</h3>
 			@endif
 
-			<div class="__table">
+			<div class="__table w-max">
 				@foreach ($g_table['r_table'] as $item)
-				<div class="__row grid grid-cols-3 p-2 b-border-b">
+				<div class="__row grid grid-cols-[2fr_1fr] gap-30 p-2 b-border-b">
 					<p class="text-white">{{ $item['col1'] }}</p>
 					<p class="text-white">{{ $item['col2'] }}</p>
-					<p class="text-white">{{ $item['col3'] }}</p>
+			<!-- 		<p class="text-white">{{ $item['col3'] }}</p> -->
 				</div>
 				@endforeach
 			</div>
