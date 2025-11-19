@@ -1,9 +1,20 @@
 @php
 $sectionClass = '';
 $sectionClass .= $flip ? ' order-flip' : '';
+$sectionClass .= $wide ? ' wide' : '';
+$sectionClass .= $nomt ? ' !mt-0' : '';
+$sectionClass .= $gap ? ' wider-gap' : '';
+
+if (!empty($background) && $background !== 'none') {
+$sectionClass .= ' ' . $background;
+}
+
 @endphp
 
-<section data-gsap-anim="section" class="b-two-cols -smt {{ $sectionClass }}">
+<!--- two-columns -->
+
+<section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="b-two-cols -smt {{ $sectionClass }}">
+
 	<div class="__wrapper c-main grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8">
 		<div class="__first">
 			@if (!empty($col1['image']))
