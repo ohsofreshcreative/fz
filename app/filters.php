@@ -45,7 +45,7 @@ add_filter('woocommerce_form_field_args', function ($args, $key, $value) {
 }, 10, 3);
 
 /*--- ADD BEFORE PRODUCT TITLE ---*/
-
+/* 
 add_action('init', function () {
     remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 5);
 
@@ -53,7 +53,7 @@ add_action('init', function () {
         $custom_text = 'Rejestracja: '; // <-- Zmień ten tekst na dowolny
         echo '<h1 class="product_title entry-title">' . esc_html($custom_text) . get_the_title() . '</h1>';
     }, 5);
-});
+}); */
 
 /*--- CHANGE BILLING ADDRESS HEADING ---*/
 

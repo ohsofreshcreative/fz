@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         allowTouchMove: false, // Blokada ręcznego przewijania (myszką/palcem)
         speed: 1000, // Opcjonalnie: czas trwania animacji przejścia (1s) dla płynności
         autoplay: {
-          delay: 2000, // Czas w ms (3 sekundy) między przewinięciami
+          delay: 1000, // Czas w ms (3 sekundy) między przewinięciami
           disableOnInteraction: false, // Autoplay nie zatrzyma się po kliknięciu strzałek
         },
         pagination: {

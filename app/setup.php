@@ -560,12 +560,33 @@ add_action('woocommerce_checkout_create_order', function ($order) {
 
 /*--- SET PAYU AS DEFAULT ---*/
 
-add_filter( 'woocommerce_default_gateway', 'osf_set_default_payu_gateway' );
-
-function osf_set_default_payu_gateway( $default ) {
-    // ID brany z value="" w input – u Ciebie: value="payulistbanks"
+// 1. Ustaw PayU jako domyślną opcję
+add_filter('woocommerce_default_gateway', function () {
     return 'payulistbanks';
-}
+});
+
+// 2. Przesuń PayU na samą górę listy (to kluczowe dla poprawnego wyświetlania boxa)
+add_filter('woocommerce_available_payment_gateways', function ($gateways) {
+    // Sprawdź czy PayU jest dostępne
+    if (isset($gateways['payulistbanks'])) {
+        $payu = $gateways['payulistbanks'];
+        unset($gateways['payulistbanks']);
+        // Wstaw na początek tablicy
+        return array_merge(['payulistbanks' => $payu], $gateways);
+    }
+    return $gateways;
+});
+
+// 3. Wymuś ustawienie sesji przy wejściu na checkout
+// (Naprawia problem, gdy WC pamięta "Przelew" z poprzedniej wizyty)
+add_action('template_redirect', function () {
+    if (is_checkout() && !is_wc_endpoint_url()) {
+        // Jeśli sesja WC istnieje i wybrana metoda jest inna niż PayU
+        if (WC()->session && WC()->session->get('chosen_payment_method') !== 'payulistbanks') {
+            WC()->session->set('chosen_payment_method', 'payulistbanks');
+        }
+    }
+});
 
 
 
