@@ -363,9 +363,9 @@ add_filter('woocommerce_billing_fields', function ($fields) {
         ];
     }
 
-    if (isset($fields['billing_company'])) {
-        $fields['billing_company']['label'] = 'Nazwa firmy/instytucji';
-        $fields['billing_company']['class'][] = 'hidden';
+    if (isset($fields['shipping_company'])) {
+        $fields['shipping_company']['label'] = 'Nazwa firmy/instytucji';
+        $fields['shipping_company']['class'][] = 'hidden';
     }
 
     if (isset($fields['billing_tax_no'])) {
