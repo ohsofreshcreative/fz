@@ -10,9 +10,6 @@ $description = $product->get_description();
 <li class="product__card border-left-p bg-dark border-dashed rounded-xl !px-10 !py-14 grid grid-cols-1 lg:grid-cols-[1fr_2fr_2fr] gap-10">
 
 	<figure class="woocommerce-product-figure relative">
-		@if($product && $product->is_on_sale())
-		<span class="onsale">Promocja!</span>
-		@endif
 
 		<a href="{{ get_permalink() }}">
 			<img src="{{ get_the_post_thumbnail_url($product->get_id(), 'large') }}"
@@ -22,7 +19,7 @@ $description = $product->get_description();
 
 	<div>
 		<h5 class="woocommerce-loop-product__title">
-			<a class="text-white" href="{{ get_permalink() }}">{!! get_the_title() !!}</a>
+			<a class="text-white" href="{{ get_permalink() }}">{{ $product_about['name'] }}</a>
 		</h5>
 		@if ($description)
 		<div class="text-sm mt-4 text-white">{!! $description !!}</div>

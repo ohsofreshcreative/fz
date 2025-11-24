@@ -16,6 +16,12 @@ add_action('acf/init', function () {
                 'layout' => 'block',
                 'sub_fields' => [
                     [
+                        'key' => 'field_product_about_main_name', // Zmieniony klucz dla unikalności
+                        'label' => 'Nazwa',
+                        'name' => 'name',
+                        'type' => 'text',
+                    ],
+                    [
                         'key' => 'field_product_about_main_date', // Zmieniony klucz dla unikalności
                         'label' => 'Data',
                         'name' => 'date',
