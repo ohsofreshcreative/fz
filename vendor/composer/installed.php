@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'roots/sage',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'cc229f44c5e5c099f23273f8e745641eefb0238a',
         'type' => 'wordpress-theme',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -630,9 +630,9 @@
             'dev_requirement' => false,
         ),
         'roots/sage' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'cc229f44c5e5c099f23273f8e745641eefb0238a',
             'type' => 'wordpress-theme',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
