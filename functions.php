@@ -103,4 +103,27 @@ add_filter('sage/acf-composer/fields', fn () => [
     App\Blocks\ExampleBlock::class,
 ]);
 
+/*--- CHANGE ORDER STATUS ---*/
+
+add_action( 'woocommerce_order_status_changed', 'aktualizuj_date_zamowienia_przy_realizacji', 10, 4 );
+
+function aktualizuj_date_zamowienia_przy_realizacji( $order_id, $old_status, $new_status, $order ) {
+    // Sprawdzamy czy status to 'completed' (Zrealizowane)
+    if ( $new_status === 'completed' ) {
+        
+        // KROK 1: Odpinamy tę funkcję, aby uniknąć pętli nieskończonej przy zapisie
+        remove_action( 'woocommerce_order_status_changed', 'aktualizuj_date_zamowienia_przy_realizacji', 10 );
+
+        // KROK 2: Ustawiamy datę utworzenia na "teraz" (format MySQL jest bezpieczniejszy dla WC)
+        $order->set_date_created( current_time( 'mysql' ) );
+        
+        // KROK 3: Zapisujemy zmiany
+        $order->save();
+
+        // KROK 4: Przypinamy funkcję z powrotem (dla kolejnych wywołań w tym samym procesie)
+        add_action( 'woocommerce_order_status_changed', 'aktualizuj_date_zamowienia_przy_realizacji', 10, 4 );
+    }
+}
+
+
 
