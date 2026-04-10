@@ -81,7 +81,7 @@ $sectionClass .= $flip ? ' order-flip' : '';
                 @foreach($g_hero['certs'] as $cert)
                     @if(!empty($cert['cert_pdf']['url']) && !empty($cert['cert_image']['url']))
                         <a href="{{ $cert['cert_pdf']['url'] }}" target="_blank">
-                            <img class="max-h-26 rounded-full" src="{{ $cert['cert_image']['url'] }}" alt="{{ $cert['cert_image']['alt'] ?? '' }}"/>
+                            <img class="max-h-26 rounded-full hover:opacity-50" src="{{ $cert['cert_image']['url'] }}" alt="{{ $cert['cert_image']['alt'] ?? '' }}"/>
                         </a>
                     @endif
                 @endforeach
