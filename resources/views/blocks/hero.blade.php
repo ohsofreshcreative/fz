@@ -90,7 +90,7 @@ $sectionClass .= $flip ? ' order-flip' : '';
 
         @if (!empty($g_hero['image']))
         <div data-gsap-element="image" class="">
-            <img src="{{ $g_hero['image']['url'] }}" alt="{{ $g_hero['image']['alt'] ?? '' }}">
+            <img class="max-h-26" src="{{ $g_hero['image']['url'] }}" alt="{{ $g_hero['image']['alt'] ?? '' }}">
         </div>
         @endif
     </div>
