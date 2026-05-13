@@ -110,16 +110,15 @@ add_filter('woocommerce_checkout_fields', function ($fields) {
 });
 
 
-add_filter('woocommerce_no_products_found', function () {
-    return '
-        <div class="conference-registration-closed">
-            <h2>Rejestracja na konferencję została zakończona</h2>
-            <p>
-                Dziękujemy za zainteresowanie wydarzeniem. Rejestracja online na tę konferencję została już zamknięta.
-            </p>
-            <p>
-                W przypadku pytań prosimy o kontakt z organizatorem wydarzenia.
-            </p>
-        </div>
-    ';
-});
+
+add_filter('gettext', function ($translated, $text, $domain) {
+
+    if ($domain === 'woocommerce' && $translated === 'Nie znaleziono produktów, których szukasz.') {
+
+        return 'Rejestracja na konferencję została zakończona. Dziękujemy za zainteresowanie wydarzeniem. W przypadku pytań prosimy o kontakt z organizatorem.';
+
+    }
+
+    return $translated;
+
+}, 20, 3);
