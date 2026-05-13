@@ -108,3 +108,18 @@ add_filter('woocommerce_checkout_fields', function ($fields) {
 
     return $fields;
 });
+
+
+add_filter('woocommerce_no_products_found', function () {
+    return '
+        <div class="conference-registration-closed">
+            <h2>Rejestracja na konferencję została zakończona</h2>
+            <p>
+                Dziękujemy za zainteresowanie wydarzeniem. Rejestracja online na tę konferencję została już zamknięta.
+            </p>
+            <p>
+                W przypadku pytań prosimy o kontakt z organizatorem wydarzenia.
+            </p>
+        </div>
+    ';
+});
