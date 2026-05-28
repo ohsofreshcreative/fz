@@ -23,10 +23,10 @@ $sectionClass .= ' ' . $background;
 
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-10">
 				@foreach ($g_numbers['r_numbers'] as $item)
-				<div class="__card relative bg-primary border-p radius p-10">
-					<img src="{{ $item['img']['url'] }}" alt="{{ $item['img']['alt'] ?? '' }}" />
-					<p class="font-bold text-h3 mt-6 !mb-0">{{ $item['title'] }}</p>
-					<p class="text-lg">{{ $item['txt'] }}</p>
+				<div class="__card relative bg-brand border-p p-10">
+					<!-- 	<img src="{{ $item['img']['url'] }}" alt="{{ $item['img']['alt'] ?? '' }}" /> -->
+					<p class="font-bold text-h2 secondary text-center">{{ $item['title'] }}</p>
+					<p class="text-lg text-white text-center">{{ $item['txt'] }}</p>
 				</div>
 				@endforeach
 			</div>

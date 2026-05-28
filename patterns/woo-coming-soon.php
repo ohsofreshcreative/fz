@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Title: Woo Coming Soon (custom)
  * Slug: woocommerce/coming-soon
@@ -7,16 +8,25 @@
  */
 ?>
 
-<!-- wp:group {"layout":{"type":"constrained"}} -->
-<div class="wp-block-group" style="min-height:100vh;display:grid;place-items:center;padding:48px;background-color:#025;">
-  <!-- wp:group {"layout":{"type":"constrained"}} -->
-  <div class="wp-block-group" style="text-align:center;max-width:800px">
-    <!-- wp:site-logo {"width":120} /-->
-	<img src="/wp-content/uploads/2025/11/logo.svg" />
-    <!-- wp:heading {"level":1, "style":{"color":{"text":"#ffffff"}}} -->
-    <h1 class="wp-block-heading" style="color:#FFF">Wracamy wkrótce!</h1>
-    <!-- /wp:heading -->
-  </div>
-  <!-- /wp:group -->
-</div>
-<!-- /wp:group -->
+<?php
+echo \Illuminate\Support\Facades\Vite::withEntryPoints([
+  'resources/css/app.css',
+  'resources/js/app.js',
+])->toHtml();
+
+echo \Roots\view('sections.header')->render();
+
+$source_page = get_page_by_path('coming-soon-content');
+?>
+
+<main id="main" class="main -spt">
+  <?php
+  if ($source_page instanceof WP_Post) {
+    echo apply_filters('the_content', $source_page->post_content);
+  } else {
+    echo '<h1 style="color:#fff;text-align:center">Wracamy wkrótce!</h1>';
+  }
+  ?>
+</main>
+
+<?php echo \Roots\view('sections.footer')->render(); ?>
