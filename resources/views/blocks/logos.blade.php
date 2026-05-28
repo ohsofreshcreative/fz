@@ -6,11 +6,12 @@ $customClass = $block->data['className'] ?? '';
 
 <!--- b-logos --->
 
-<section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="b-logos section-s-light -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
+<section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="b-logos section-white -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
     <div class="{{ $block->classes }}">
         <div class="__wrapper c-main block">
             @if(!empty($g_logos['title']))
                 <h2 class="secondary w-3/4 mb-10">{{ $g_logos['title'] }}</h2>
+				  <p>{!! $g_logos['txt'] !!}</p>
             @endif
         </div>
 

@@ -177,22 +177,21 @@ document.addEventListener('DOMContentLoaded', () => {
   swipers.forEach((container) => {
     if (container.swiper) return; // zabezpieczenie przed podwójną inicjalizacją
 
-    new Swiper(container, {
-      loop: true,
-      loopAdditionalSlides: 12,
-      slidesPerView: 'auto',
-      spaceBetween: 24,
-      allowTouchMove: false,
-      freeMode: false,
-      speed: 5000,
-      autoplay: {
-        delay: 0,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: false,
-        waitForTransition: false,
-      },
-      observer: true,
-      observeParents: true,
-    });
+  new Swiper(container, {
+  loop: true,
+  watchOverflow: false,
+  slidesPerView: 'auto',
+  spaceBetween: 24,
+  allowTouchMove: false,
+  speed: 6000,
+  autoplay: {
+    delay: 1,
+    disableOnInteraction: false,
+    pauseOnMouseEnter: false,
+    waitForTransition: false,
+  },
+  observer: true,
+  observeParents: true,
+});
   });
 });

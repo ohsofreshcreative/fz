@@ -38,6 +38,12 @@ class Logos extends Block
 			->addTab('Treści', ['placement' => 'top'])
 			->addGroup('g_logos', ['label' => ''])
 			->addText('title', ['label' => 'Tytuł'])
+			->addTextarea('txt', [
+				'label' => 'Opis',
+				'rows' => 4,
+				'placeholder' => 'Wpisz opis...',
+				'new_lines' => 'br',
+			])
 			->addGallery('logos_gallery', [
 				'label' => 'Galeria logotypów',
 				'return_format' => 'array',
