@@ -4,7 +4,7 @@ $sectionClass = '';
 
 <!--- contact -->
 
-<section data-gsap-anim="section" class="b-contact relative -spt {{ $sectionClass }}">
+<section data-gsap-anim="section" class="b-contact relative -spt -spb {{ $sectionClass }}">
 
 	<div class="__wrapper c-main relative z-2">
 
