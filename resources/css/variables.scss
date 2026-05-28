@@ -144,6 +144,7 @@ body {
 
 	--smt: 104px;
 	--spt: 104px;
+	--spb: 104px;
 	--menu-height: 104px !important;
 
 	--img-xs: 200px;
@@ -205,6 +206,10 @@ body {
 
 .-spt {
 	padding-top: var(--smt) !important;
+}
+
+.-spb {
+	padding-bottom: var(--spb) !important;
 }
 
 .img-square {
