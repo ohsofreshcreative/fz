@@ -168,30 +168,36 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 });
 
+/*--- LOGOS MARQUEE ---*/
+window.addEventListener('load', () => {
+  const swipers = document.querySelectorAll('.logos-swiper');
+  if (!swipers.length) return;
 
+  swipers.forEach((container) => {
+    if (container.swiper) {
+      container.swiper.destroy(true, true);
+    }
 
-document.addEventListener('DOMContentLoaded', () => {
-	const swipers = document.querySelectorAll('.logos-swiper');
-	if (!swipers.length) return;
+    const slidesCount = container.querySelectorAll('.swiper-slide').length;
 
-	swipers.forEach((container) => {
-		if (container.swiper) return; // zabezpieczenie przed podwójną inicjalizacją
-
-		new Swiper(container, {
-			loop: true,
-			watchOverflow: false,
-			slidesPerView: 'auto',
-			spaceBetween: 24,
-			allowTouchMove: false,
-			speed: 6000,
-			autoplay: {
-				delay: 1,
-				disableOnInteraction: false,
-				pauseOnMouseEnter: false,
-				waitForTransition: false,
-			},
-			observer: true,
-			observeParents: true,
-		});
-	});
+    new Swiper(container, {
+      loop: true,
+      watchOverflow: false,
+      loopedSlides: slidesCount,
+      loopAdditionalSlides: slidesCount,
+      slidesPerView: 'auto',
+      spaceBetween: 24,
+      allowTouchMove: false,
+      speed: 2000,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: false,
+        waitForTransition: false,
+      },
+      observer: true,
+      observeParents: true,
+      observeSlideChildren: true,
+    });
+  });
 });
