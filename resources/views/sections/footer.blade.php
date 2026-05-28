@@ -11,7 +11,7 @@
 	</div>
 	</div>
 
-	<div class="c-main footer-bottom text-white flex flex-col md:flex-row justify-between gap-6 py-10 ">
+	<div class="c-main footer-bottom b-border-t text-white flex flex-col md:flex-row justify-between gap-6 py-10 ">
 		<p class="">Copyright ©2025 <?php echo get_bloginfo('name'); ?>. All Rights Reserved</p>
 		<p class="flex gap-2">Designed &amp; Developed by
 			<a target="_blank" href="https://www.ohsofresh.pl" title="OhSoFresh"><img class="oh" src="/wp-content/themes/fz/resources/images/ohsofresh.svg"></a>
