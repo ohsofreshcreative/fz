@@ -1,0 +1,50 @@
+.logos-marquee {
+  overflow: visible;
+}
+
+.logos-marquee__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: logos-marquee 28s linear infinite;
+}
+
+.logos-marquee__group {
+  display: flex;
+  flex-shrink: 0;
+  min-width: max-content;
+  gap: 24px;
+  padding-right: 24px;
+}
+
+.logos-marquee__item {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  height: 7.5rem;
+  padding-inline: 1.5rem;
+}
+
+.logos-marquee__item img {
+  display: block;
+  max-height: 4rem;
+  width: auto;
+  object-fit: contain;
+}
+
+@keyframes logos-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logos-marquee__track {
+    animation: none;
+  }
+}

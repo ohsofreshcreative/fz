@@ -1,16 +1,10 @@
-
 /*--- SWIPER ---*/
 
 import Swiper from 'swiper';
 import 'swiper/css';
+import { Navigation, Pagination, Autoplay, FreeMode } from 'swiper/modules';
 
-// Dodatkowe moduły (opcjonalnie)
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-
-Swiper.use([Navigation, Pagination, Autoplay]);
-
-
-/*--- SWIPER ---*/
+Swiper.use([Navigation, Pagination, Autoplay, FreeMode]);
 
 const swiperOptionsAnchorsSlider = {
 	loop: false,
@@ -18,15 +12,10 @@ const swiperOptionsAnchorsSlider = {
 	spaceBetween: 32,
 	freeMode: true,
 	navigation: {
-		nextEl: ".swiper-button-next",
-		prevEl: ".swiper-button-prev",
+		nextEl: '.swiper-button-next',
+		prevEl: '.swiper-button-prev',
 	},
 };
-
-document.addEventListener('DOMContentLoaded', function () {
-	const swiperContainer = document.querySelector('.mySwiper');
-	const swiper = new Swiper(swiperContainer, swiperOptionsAnchorsSlider);
-});
 
 const swiperReviews = {
 	loop: false,
@@ -34,23 +23,32 @@ const swiperReviews = {
 	spaceBetween: 0,
 	freeMode: true,
 	navigation: {
-		nextEl: ".swiper-button-next",
-		prevEl: ".swiper-button-prev",
+		nextEl: '.swiper-button-next',
+		prevEl: '.swiper-button-prev',
 	},
 };
 
-document.addEventListener('DOMContentLoaded', function () {
-	const swiperContainer = document.querySelector('.sliders');
-	const swiper = new Swiper(swiperContainer, swiperReviews);
+document.addEventListener('DOMContentLoaded', () => {
+	const mySwiperContainer = document.querySelector('.mySwiper');
+	if (mySwiperContainer) {
+		new Swiper(mySwiperContainer, swiperOptionsAnchorsSlider);
+	}
+
+	const slidersContainer = document.querySelector('.sliders');
+	if (slidersContainer) {
+		new Swiper(slidersContainer, swiperReviews);
+	}
 });
 
-/*--- SWIPER ---*/
-
+/*--- GENERYCZNE SWIPERY ---*/
 document.addEventListener('DOMContentLoaded', () => {
 	const swipers = document.querySelectorAll('.swiper');
 
 	if (swipers.length > 0) {
 		swipers.forEach((container) => {
+			// logos-swiper ma osobną konfigurację marquee poniżej
+			if (container.classList.contains('logos-swiper')) return;
+
 			new Swiper(container, {
 				slidesPerView: 1,
 				spaceBetween: 30,
@@ -76,12 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			new Swiper(container, {
 				slidesPerView: 3,
 				spaceBetween: 30,
-				loop: true, // Pętla nieskończona
-				allowTouchMove: false, // Blokada ręcznego przewijania (myszką/palcem)
-				speed: 1000, // Opcjonalnie: czas trwania animacji przejścia (1s) dla płynności
+				loop: true,
+				allowTouchMove: false,
+				speed: 1000,
 				autoplay: {
-					delay: 1000, // Czas w ms (3 sekundy) między przewinięciami
-					disableOnInteraction: false, // Autoplay nie zatrzyma się po kliknięciu strzałek
+					delay: 1000,
+					disableOnInteraction: false,
 				},
 				pagination: {
 					el: container.querySelector('.swiper-pagination'),
@@ -149,19 +147,14 @@ document.addEventListener('DOMContentLoaded', () => {
 				},
 			});
 
-			// Helper function to update first visible slide
 			function updateFirstVisibleSlide(swiperInstance, swiperContainer) {
-				// First, remove the class from all slides within THIS specific swiper only
 				const allSlides = swiperContainer.querySelectorAll('.swiper-slide');
 				allSlides.forEach((slide) => {
 					slide.classList.remove('first-visible-slide');
 				});
 
-				// Then, add the class only to the first visible slide of THIS swiper
 				if (swiperInstance.slides[swiperInstance.activeIndex]) {
-					swiperInstance.slides[swiperInstance.activeIndex].classList.add(
-						'first-visible-slide'
-					);
+					swiperInstance.slides[swiperInstance.activeIndex].classList.add('first-visible-slide');
 				}
 			}
 		});
@@ -170,34 +163,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /*--- LOGOS MARQUEE ---*/
 window.addEventListener('load', () => {
-  const swipers = document.querySelectorAll('.logos-swiper');
-  if (!swipers.length) return;
+	const swipers = document.querySelectorAll('.logos-swiper');
+	if (!swipers.length) return;
 
-  swipers.forEach((container) => {
-    if (container.swiper) {
-      container.swiper.destroy(true, true);
-    }
+	swipers.forEach((container) => {
+		if (container.swiper) {
+			container.swiper.destroy(true, true);
+		}
 
-    const slidesCount = container.querySelectorAll('.swiper-slide').length;
-
-    new Swiper(container, {
-      loop: true,
-      watchOverflow: false,
-      loopedSlides: slidesCount,
-      loopAdditionalSlides: slidesCount,
-      slidesPerView: 'auto',
-      spaceBetween: 24,
-      allowTouchMove: false,
-      speed: 2000,
-      autoplay: {
-        delay: 0,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: false,
-        waitForTransition: false,
-      },
-      observer: true,
-      observeParents: true,
-      observeSlideChildren: true,
-    });
-  });
+		new Swiper(container, {
+			slidesPerView: 'auto',
+			spaceBetween: 24,
+			loop: true,
+			loopedSlides: container.querySelectorAll('.swiper-slide').length,
+			loopAdditionalSlides: container.querySelectorAll('.swiper-slide').length,
+			allowTouchMove: false,
+			freeMode: true,
+			freeModeMomentum: false,
+			speed: 7000,
+			autoplay: {
+				delay: 1,
+				disableOnInteraction: false,
+				pauseOnMouseEnter: false,
+				waitForTransition: false,
+			},
+			observer: true,
+			observeParents: true,
+			observeSlideChildren: true,
+		});
+	});
 });
