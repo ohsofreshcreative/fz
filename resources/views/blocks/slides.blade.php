@@ -6,7 +6,7 @@ $customClass = $block->data['className'] ?? '';
 
 <!--- b-slides --->
 
-<section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="b-slides -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
+<section id="slides" data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="b-slides -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
 	<div class="{{ $block->classes }}">
 
 		<div class="__wrapper c-main block">
