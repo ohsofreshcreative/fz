@@ -5,7 +5,7 @@ $customClass = $block->data['className'] ?? '';
 $marqueeLogos = !empty($logos) ? $logos : [];
 @endphp
 
-<section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="b-logos section-white -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
+<section id="logotypy" data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="b-logos section-white -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
   <div class="{{ $block->classes }}">
     <div class="__wrapper c-main block">
       @if(!empty($g_logos['title']))
