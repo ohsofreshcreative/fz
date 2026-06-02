@@ -1041,15 +1041,16 @@ textarea {
 	width: 100%;
 	background-color: transparent;
 	border: none;
-	border: 2px solid var(--primary);
+	border: 2px solid var(--secondary);
 	padding: 12px;
 	transition: all 0.2s ease-out;
 	border-radius: 4px;
+	color:#FFF !important;
 }
 
 input::placeholder,
 textarea::placeholder {
-	color: #8f8f8f;
+	color: #3e4b60;
 	opacity: 1;
 }
 
@@ -1058,7 +1059,7 @@ input[type='tel']:focus,
 input[type='email']:focus,
 textarea:focus {
 	width: 100%;
-	border: 2px solid var(--p-700);
+	border: 2px solid var(--s-800);
 	outline: none;
 	transition: all 0.2s ease-out;
 }
@@ -1069,7 +1070,7 @@ textarea {
 
 input[type='submit'] {
 	font-size: 16px;
-	background: var(--primary) !important;
+	background: var(--secondary) !important;
 	color: #fff;
 	padding: 15px 45px;
 	display: inline-block;
@@ -1085,7 +1086,7 @@ input[type='submit'] {
 
 input[type='submit']:hover {
 	color: #fff;
-	background: var(--p-hover);
+	background: var(--s-hover) !important;
 	transition: all 0.2s ease-out;
 	border: 1px solid transparent;
 }
