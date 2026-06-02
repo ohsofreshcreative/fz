@@ -951,6 +951,12 @@ h6,
 
 /*--- !MENU  ---*/
 
+.menu-item {
+	a {
+		color:#FFF !important;
+	}
+}
+
 .fixed-top {
 	height: var(--menu-height);
 	position: fixed;
