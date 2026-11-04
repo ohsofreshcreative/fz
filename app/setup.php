@@ -24,6 +24,17 @@ add_filter('block_editor_settings_all', function ($settings) {
 });
 
 /**
+ * Inject styles into the classic (TinyMCE) editor.
+ *
+ * @return string
+ */
+add_filter('mce_css', function ($mce_css) {
+	$style = Vite::asset('resources/css/editor.css');
+
+	return $mce_css ? "{$mce_css},{$style}" : $style;
+});
+
+/**
  * Inject scripts into the block editor.
  *
  * @return void
