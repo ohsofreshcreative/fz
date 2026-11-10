@@ -19,12 +19,12 @@
     color: var(--swiper-navigation-color, var(--swiper-theme-color));
     width: 64px;
     height: 64px;
-    background-color: var(--primary);
+    background-color: var(--color-primary);
     transition: all 0.2s ease-out;
   }
   .swiper-button-next:hover,
   .swiper-button-prev:hover {
-    background-color: var(--p-hover);
+    background-color: var(--color-primary-hover);
     transition: all 0.2s ease-out;
   }
   .swiper-button-next svg,

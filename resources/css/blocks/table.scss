@@ -1,9 +1,9 @@
 .b-table {
   .__table {
     .__row:first-child {
-      background-color: var(--s-200);
+      background-color: var(--color-secondary-200);
       p {
-        color: var(--body) !important;
+        color: var(--color-body) !important;
       }
     }
   }

@@ -5,7 +5,7 @@
   }
 
   .__phone:hover {
-    color: var(--s-300) !important;
+    color: var(--color-secondary-300) !important;
     transition: all 0.5s ease-out;
   }
 
@@ -22,7 +22,7 @@
   }
 
   .__mail:hover {
-    color: var(--s-300) !important;
+    color: var(--color-secondary-300) !important;
     transition: all 0.5s ease-out;
   }
   .__mail::before {

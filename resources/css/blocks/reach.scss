@@ -6,7 +6,7 @@
   }
 
   .__phone:hover {
-    color: var(--s-300) !important;
+    color: var(--color-secondary-300) !important;
     transition: all 0.5s ease-out;
   }
 
@@ -24,7 +24,7 @@
   }
 
   .__mail:hover {
-    color: var(--s-300) !important;
+    color: var(--color-secondary-300) !important;
     transition: all 0.5s ease-out;
   }
 
@@ -49,7 +49,7 @@
     width: 100%;
     padding: 10px 22px;
     border: none;
-    border: 1px solid var(--s-300);
+    border: 1px solid var(--color-secondary-300);
     background: transparent;
     font-size: 16px;
     color: #fff;
@@ -70,20 +70,20 @@
   input[type='number']:focus,
   input[type='tel']:focus,
   textarea:focus{
-    border: 1px solid var(--s-800);
+    border: 1px solid var(--color-secondary-800);
     transition: all 0.5s ease-out;
-	background-color: var(--p-800);
+	background-color: var(--color-primary-800);
   }
 
 
   ::placeholder {
-	color:var(--s-900);
+	color:var(--color-secondary-900);
   }
 
   input[type='submit'] {
     font-family: var(--btns-font);
     font-size: var(--btns-fontsize);
-    background: var(--secondary) !important;
+    background: var(--color-secondary) !important;
     color: #fff;
     padding: var(--btns-padding);
     display: inline-block;
@@ -98,7 +98,7 @@
   }
 
   input[type='submit']:hover {
-    background: var(--s-hover) !important;
+    background: var(--color-secondary-hover) !important;
     color: #fff;
     transition: all 0.2s ease-out;
     border: 1px solid transparent;

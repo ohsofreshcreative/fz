@@ -29,14 +29,14 @@
     color: var(--swiper-navigation-color, var(--swiper-theme-color));
     width: 64px;
     height: 64px;
-    background-color: var(--s-200);
+    background-color: var(--color-secondary-200);
     border-radius: 100px;
     transition: all 0.4s ease;
   }
 
   .swiper-button-next:hover,
   .swiper-button-prev:hover {
-    background-color: var(--s-500);
+    background-color: var(--color-secondary-500);
     transition: all 0.4s ease;
   }
   .swiper-button-next svg,

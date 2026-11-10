@@ -60,8 +60,8 @@
 }
 
 ::selection {
-	background: var(--s-300);
-	color: var(--primary);
+	background: var(--color-secondary-300);
+	color: var(--color-primary);
 }
 
 /* 
@@ -84,60 +84,12 @@ html {
 html,
 body {
 	overflow-x: clip;
-	background-color: var(--bg);
+	background-color: var(--color-page);
 }
 
 /*--- !ROOT ---*/
 
 :root {
-	--body: #020c1e !important;
-	--primary: #002255;
-	--p-hover: #aab5c6;
-	--p-100: #ccd3dd;
-	--p-200: #aab5c6;
-	--p-300: #8091aa;
-	--p-400: #556c8e;
-	--p-500: #2a4771;
-	--p-600: #002255;
-	--p-700: #001c47;
-	--p-800: #001739;
-	--p-900: #00112b;
-	--p-dark: #000b1c;
-	--p-darker: #000711;
-	--p-brand: #002b6d;
-
-	--secondary: #06a8ff;
-	--s-hover: #058cd5;
-	--s-50: #d8f2ff;
-	--s-100: #cdeeff;
-	--s-200: #ace2ff;
-	--s-300: #83d4ff;
-	--s-400: #59c5ff;
-	--s-500: #2fb7ff;
-	--s-600: #06a8ff;
-	--s-700: #058cd5;
-	--s-800: #0470aa;
-	--s-900: #035480;
-	--s-dark: #023855;
-	--s-darker: #012233;
-
-	--text-p-light: var(--p-200);
-	--text-p-lighter: var(--p-400);
-	--text-s-light: var(--s-400);
-	--text-s-lighter: var(--s-200);
-
-	--gray: #63656a;
-	--bg: #002255;
-	--bg-p-light: var(--p-200);
-	--bg-p-lighter: var(--p-100);
-	--bg-s-light: var(--s-200);
-	--bg-s-lighter: var(--s-50);
-
-	--border-p: var(--p-500);
-	--border-p-light: var(--p-100);
-	--border-s: var(--s-300);
-	--border-s-light: var(--s-200);
-
 	--header: 'Inter', sans-serif;
 	--txt: 'Inter', sans-serif;
 	--btns-font: 'Inter', sans-serif;
@@ -167,8 +119,6 @@ body {
 	--btns-padding: 24px 48px;
 
 	--footer-py: 156px 0;
-
-	--gradient: linear-gradient(90deg, var(--primary) 0%, var(--p-500) 100%);
 }
 
 /*--- !CONTAINERS ---*/
@@ -260,11 +210,11 @@ body {
 }
 
 .section-light {
-	background: var(--bg-s-lighter);
+	background: var(--color-secondary-50);
 	padding: 120px 0;
 
 	.text-white {
-		color: var(--body) !important;
+		color: var(--color-body) !important;
 	}
 
 	.bg-secondary {
@@ -279,16 +229,16 @@ body {
 }
 
 .section-s-light {
-	background-color: var(--bg-s-light);
+	background-color: var(--color-secondary-200);
 	padding: var(--smt) 0;
 
 	.text-light {
-		color: var(--s-400) !important;
+		color: var(--color-secondary-400) !important;
 	}
 }
 
 .section-brand {
-	background: var(--p-brand);
+	background: var(--color-primary-brand);
 	padding: var(--smt) 0;
 
 	h1,
@@ -309,7 +259,7 @@ body {
 }
 
 .section-primary {
-	background: var(--primary);
+	background: var(--color-primary);
 	padding: var(--smt) 0;
 
 	h1,
@@ -330,7 +280,7 @@ body {
 }
 
 .section-secondary {
-	background: var(--secondary);
+	background: var(--color-secondary);
 	padding: var(--smt) 0;
 
 	h1,
@@ -351,7 +301,7 @@ body {
 }
 
 .section-dark {
-	background: var(--secondary);
+	background: var(--color-secondary);
 	padding: var(--smt) 0;
 
 	h1,
@@ -410,7 +360,7 @@ body {
 }
 
 .font-txt {
-	font-family: var(--body);
+	font-family: var(--color-body);
 }
 
 p:last-of-type {
@@ -418,7 +368,7 @@ p:last-of-type {
 }
 
 a {
-	color: var(--body);
+	color: var(--color-body);
 	text-decoration: none !important;
 	transition: all 0.2s ease-out;
 }
@@ -426,7 +376,7 @@ a {
 .subtitle-p {
 	display: block;
 	font-size: 16px;
-	color: var(--p-400);
+	color: var(--color-primary-400);
 	padding-bottom: 16px;
 }
 
@@ -439,7 +389,7 @@ a {
 	display: block;
 	font-size: 18px;
 	font-weight: 500;
-	color: var(--secondary);
+	color: var(--color-secondary);
 	padding-bottom: 16px;
 	text-transform: uppercase;
 }
@@ -453,7 +403,7 @@ h4,
 h5,
 h6 {
 	font-family: var(--header);
-	color: var(--body);
+	color: var(--color-body);
 	font-weight: 500;
 }
 
@@ -504,17 +454,17 @@ h6,
 
 .subheader {
 	text-transform: uppercase;
-	color: var(--primary);
+	color: var(--color-primary);
 }
 
 /*--- !COLORS ---*/
 
 .primary {
-	color: var(--primary);
+	color: var(--color-primary);
 }
 
 .secondary {
-	color: var(--secondary);
+	color: var(--color-secondary);
 }
 
 .text-white {
@@ -522,27 +472,27 @@ h6,
 }
 
 .text-body {
-	color: var(--body);
+	color: var(--color-body);
 }
 
 .text-p-light {
-	color: var(--text-p-light) !important;
+	color: var(--color-primary-200) !important;
 }
 
 .text-p-lighter {
-	color: var(--text-p-lighter) !important;
+	color: var(--color-primary-400) !important;
 }
 
 .text-s-light {
-	color: var(--text-s-light) !important;
+	color: var(--color-secondary-400) !important;
 }
 
 .text-s-lighter {
-	color: var(--text-s-lighter) !important;
+	color: var(--color-secondary-200) !important;
 }
 
 .text-gray {
-	color: var(--gray) !important;
+	color: var(--color-gray) !important;
 }
 
 .hover {
@@ -550,47 +500,47 @@ h6,
 }
 
 .bg-primary {
-	background-color: var(--primary);
+	background-color: var(--color-primary);
 }
 
 .bg-brand {
-	background-color: var(--p-brand);
+	background-color: var(--color-primary-brand);
 }
 
 .bg-p-light {
-	background-color: var(--bg-p-light);
+	background-color: var(--color-primary-200);
 }
 
 .bg-p-lighter {
-	background-color: var(--bg-p-lighter);
+	background-color: var(--color-primary-100);
 }
 
 .bg-secondary {
-	background-color: var(--secondary);
+	background-color: var(--color-secondary);
 }
 
 .bg-s-400 {
-	background-color: var(--s-400);
+	background-color: var(--color-secondary-400);
 }
 
 .bg-s-light {
-	background-color: var(--bg-s-light);
+	background-color: var(--color-secondary-200);
 }
 
 .bg-s-lighter {
-	background-color: var(--bg-s-lighter);
+	background-color: var(--color-secondary-50);
 }
 
 .bg-secondary {
-	background-color: var(--secondary);
+	background-color: var(--color-secondary);
 }
 
 .bg-s-hover {
-	background-color: var(--s-hover);
+	background-color: var(--color-secondary-hover);
 }
 
 .bg-p-hover {
-	background-color: var(--p-hover);
+	background-color: var(--color-primary-hover);
 }
 
 .bg-gradient {
@@ -598,7 +548,7 @@ h6,
 }
 
 .bg-dark {
-	background-color: var(--p-800) !important;
+	background-color: var(--color-primary-800) !important;
 }
 
 .bg-white {
@@ -624,39 +574,39 @@ h6,
 }
 
 .border-dashed {
-	border: 1px dashed var(--border-s) !important;
+	border: 1px dashed var(--color-secondary-300) !important;
 }
 
 .border-p {
-	border: 1px solid var(--border-p) !important;
+	border: 1px solid var(--color-primary-500) !important;
 }
 
 .border-p-light {
-	border: 1px solid var(--border-p-light) !important;
+	border: 1px solid var(--color-primary-100) !important;
 }
 
 .border-s {
-	border: 1px solid var(--border-s) !important;
+	border: 1px solid var(--color-secondary-300) !important;
 }
 
 .border-s-light {
-	border: 1px solid var(--border-s-light) !important;
+	border: 1px solid var(--color-secondary-200) !important;
 }
 
 .b-border-l {
-	border-left: 1px dashed var(--border-s) !important;
+	border-left: 1px dashed var(--color-secondary-300) !important;
 }
 
 .b-border-r {
-	border-right: 1px solid var(--border-s-light) !important;
+	border-right: 1px solid var(--color-secondary-200) !important;
 }
 
 .b-border-t {
-	border-top: 1px solid var(--border-s-light) !important;
+	border-top: 1px solid var(--color-secondary-200) !important;
 }
 
 .b-border-b {
-	border-bottom: 1px solid var(--border-s-light) !important;
+	border-bottom: 1px solid var(--color-secondary-200) !important;
 }
 
 .b-shadow {
@@ -678,7 +628,7 @@ h6,
 .main-btn {
 	font-family: var(--btns-font);
 	font-size: var(--btns-fontsize);
-	background: var(--primary);
+	background: var(--color-primary);
 	color: #fff;
 	padding: var(--btns-padding);
 	display: inline-block;
@@ -693,7 +643,7 @@ h6,
 
 .main-btn:hover {
 	color: #fff;
-	background: var(--p-hover);
+	background: var(--color-primary-hover);
 	transition: all 0.2s ease-out;
 	border: 1px solid transparent;
 }
@@ -704,7 +654,7 @@ h6,
 .woocommerce-page #payment #place_order {
 	font-family: var(--btns-font);
 	font-size: var(--btns-fontsize);
-	background: var(--secondary);
+	background: var(--color-secondary);
 	color: #fff;
 	padding: var(--btns-padding);
 	display: inline-block;
@@ -725,7 +675,7 @@ h6,
 .woocommerce div.product form.cart .button:hover,
 .woocommerce #payment #place_order:hover,
 .woocommerce-page #payment #place_order:hover {
-	background: var(--s-hover);
+	background: var(--color-secondary-hover);
 	color: #fff;
 	transition: all 0.2s ease-out;
 	border: 1px solid transparent;
@@ -733,7 +683,7 @@ h6,
 
 .dark-btn {
 	font-size: 14px;
-	background: var(--body);
+	background: var(--color-body);
 	color: #fff;
 	padding: var(--btns-padding);
 	display: inline-block;
@@ -757,7 +707,7 @@ h6,
 	font-family: var(--btns-font);
 	font-size: var(--btns-fontsize);
 	background: #fff;
-	color: var(--primary);
+	color: var(--color-primary);
 	padding: var(--btns-padding);
 	display: inline-block;
 	transition: all 0.2s ease-out;
@@ -770,7 +720,7 @@ h6,
 }
 
 .white-btn:hover {
-	background: var(--p-300);
+	background: var(--color-primary-300);
 	color: #fff;
 	transition: all 0.2s ease-out;
 	border: 1px solid transparent;
@@ -780,7 +730,7 @@ h6,
 	font-family: var(--btns-font);
 	font-size: 14px;
 	background: #fff;
-	color: var(--primary);
+	color: var(--color-primary);
 	padding: 10px 24px;
 	display: inline-block;
 	transition: all 0.2s ease-out;
@@ -793,7 +743,7 @@ h6,
 }
 
 .white-btn-s:hover {
-	background: var(--p-300);
+	background: var(--color-primary-300);
 	color: #fff;
 	transition: all 0.2s ease-out;
 	border: 1px solid transparent;
@@ -803,12 +753,12 @@ h6,
 	font-family: var(--btns-font);
 	font-size: var(--btns-fontsize);
 	background: transparent;
-	color: var(--primary);
+	color: var(--color-primary);
 	padding: var(--btns-padding);
 	display: inline-block;
 	transition: all 0.2s ease-out;
 	font-weight: 600;
-	border: 1px solid var(--primary);
+	border: 1px solid var(--color-primary);
 	border-radius: var(--btns-radius);
 	text-decoration: none;
 	white-space: nowrap;
@@ -816,27 +766,27 @@ h6,
 }
 
 .stroke-btn.is-active {
-	background: var(--primary);
+	background: var(--color-primary);
 	color: #fff;
 }
 
 .stroke-btn:hover {
 	color: #fff;
 	transition: all 0.2s ease-out;
-	background-color: var(--p-hover);
-	border: 1px solid var(--p-hover);
+	background-color: var(--color-primary-hover);
+	border: 1px solid var(--color-primary-hover);
 }
 
 .stroke-small-btn {
 	font-family: var(--btns-font);
 	font-size: var(--btns-fontsize);
 	background: transparent;
-	color: var(--primary);
+	color: var(--color-primary);
 	padding: 8px 12px;
 	display: inline-block;
 	transition: all 0.2s ease-out;
 	font-weight: 600;
-	border: 1px solid var(--primary);
+	border: 1px solid var(--color-primary);
 	border-radius: var(--btns-radius);
 	text-decoration: none;
 	white-space: nowrap;
@@ -844,15 +794,15 @@ h6,
 }
 
 .stroke-small-btn.is-active {
-	background: var(--primary);
+	background: var(--color-primary);
 	color: #fff;
 }
 
 .stroke-small-btn:hover {
 	color: #fff;
 	transition: all 0.2s ease-out;
-	background-color: var(--p-hover);
-	border: 1px solid var(--p-hover);
+	background-color: var(--color-primary-hover);
+	border: 1px solid var(--color-primary-hover);
 }
 
 .clean-btn {
@@ -874,21 +824,21 @@ h6,
 .clean-btn:hover {
 	color: #fff;
 	transition: all 0.2s ease-out;
-	background-color: var(--p-hover);
-	border: 1px solid var(--p-hover);
+	background-color: var(--color-primary-hover);
+	border: 1px solid var(--color-primary-hover);
 }
 
 .underline-btn {
 	font-size: 16px;
 	background: transparent;
-	color: var(--p-600);
+	color: var(--color-primary-600);
 	display: inline-block;
 	transition: all 0.2s ease-out;
 	border-radius: 0;
 	font-weight: 600;
 	text-decoration: none;
 	white-space: nowrap;
-	border-bottom: 1px solid var(--primary);
+	border-bottom: 1px solid var(--color-primary);
 	width: max-content;
 }
 
@@ -913,7 +863,7 @@ h6,
 
 .menu-btn {
 	font-family: var(--btns-font);
-	background: var(--primary);
+	background: var(--color-primary);
 	color: #fff !important;
 	padding: 8px 16px !important;
 	display: inline-block;
@@ -927,7 +877,7 @@ h6,
 
 .menu-btn:hover {
 	color: #fff;
-	background: var(--p-hover);
+	background: var(--color-primary-hover);
 	transition: all 0.2s ease-out;
 	border: 1px solid transparent;
 }
@@ -968,7 +918,7 @@ h6,
 	background-color: transparent !important;
 
 	.contact__btn {
-		background-color: var(--primary);
+		background-color: var(--color-primary);
 		padding: 12px 24px;
 		transition: all 0.2s ease-out;
 		margin-left: auto;
@@ -979,7 +929,7 @@ h6,
 	}
 
 	.contact__btn:hover {
-		background-color: var(--p-hover);
+		background-color: var(--color-primary-hover);
 		padding: 12px 24px;
 		transition: all 0.2s ease-out;
 	}
@@ -997,12 +947,12 @@ h6,
 }
 
 .fixed-top.scrollDown {
-	background-color: var(--bg) !important;
+	background-color: var(--color-page) !important;
 	box-shadow: 0 3px 5px rgba(43, 23, 106, 0.2) !important;
 }
 
 .fixed-top.scrollDown .nav-link {
-	color: var(--body);
+	color: var(--color-body);
 }
 
 .mobile-menu {
@@ -1017,7 +967,7 @@ h6,
 	}
 
 	li a:hover {
-		color: var(--text-p-light);
+		color: var(--color-primary-200);
 	}
 }
 
@@ -1047,7 +997,7 @@ textarea {
 	width: 100%;
 	background-color: transparent;
 	border: none;
-	border: 2px solid var(--secondary);
+	border: 2px solid var(--color-secondary);
 	padding: 12px;
 	transition: all 0.2s ease-out;
 	border-radius: 4px;
@@ -1065,7 +1015,7 @@ input[type='tel']:focus,
 input[type='email']:focus,
 textarea:focus {
 	width: 100%;
-	border: 2px solid var(--s-800);
+	border: 2px solid var(--color-secondary-800);
 	outline: none;
 	transition: all 0.2s ease-out;
 }
@@ -1076,7 +1026,7 @@ textarea {
 
 input[type='submit'] {
 	font-size: 16px;
-	background: var(--secondary) !important;
+	background: var(--color-secondary) !important;
 	color: #fff;
 	padding: 15px 45px;
 	display: inline-block;
@@ -1092,7 +1042,7 @@ input[type='submit'] {
 
 input[type='submit']:hover {
 	color: #fff;
-	background: var(--s-hover) !important;
+	background: var(--color-secondary-hover) !important;
 	transition: all 0.2s ease-out;
 	border: 1px solid transparent;
 }
@@ -1148,7 +1098,7 @@ input[type='checkbox'] {
 	margin: 0;
 	padding: 0;
 	margin-top: 24px;
-	border-bottom: 1px solid var(--s-300) !important;
+	border-bottom: 1px solid var(--color-secondary-300) !important;
 	width: max-content;
 }
 
@@ -1182,7 +1132,7 @@ input[type='checkbox'] {
 		}
 
 		.wpcf7 form .wpcf7-response-output {
-			color: var(--body);
+			color: var(--color-body);
 			width: max-content;
 		}
 	}
@@ -1206,7 +1156,7 @@ input[type='checkbox'] {
 
 .featured-post a:hover .blog-btn,
 article.post:hover .blog-btn {
-	background-color: var(--p-500);
+	background-color: var(--color-primary-500);
 	transition: all 0.3s;
 
 	path {
@@ -1327,7 +1277,7 @@ article.post:hover img {
 
 .woocommerce:where(body:not(.woocommerce-uses-block-theme)) div.product p.price,
 .woocommerce:where(body:not(.woocommerce-uses-block-theme)) div.product span.price {
-	color: var(--secondary);
+	color: var(--color-secondary);
 	font-size: 18px;
 	font-weight: 600;
 }
@@ -1360,7 +1310,7 @@ article.post:hover img {
 .products.grid {
 	.product__card {
 		h6 {
-			color: var(--p-400);
+			color: var(--color-primary-400);
 			font-size: 18px;
 		}
 
@@ -1420,20 +1370,20 @@ article.post:hover img {
 
 	.shop_table.woocommerce-checkout-review-order-table {
 		color: #fff;
-		border-color: var(--s-300);
+		border-color: var(--color-secondary-300);
 		border-style: dashed;
-		background-color: var(--p-800);
+		background-color: var(--color-primary-800);
 	}
 
 	.woocommerce table.shop_table td {
-		border-color: var(--s-300);
+		border-color: var(--color-secondary-300);
 		border-style: dashed;
 	}
 
 	.woocommerce table.shop_table tbody th,
 	.woocommerce table.shop_table tfoot td,
 	.woocommerce table.shop_table tfoot th {
-		border-color: var(--s-300);
+		border-color: var(--color-secondary-300);
 		border-style: dashed;
 		width: 10%;
 	}
@@ -1444,7 +1394,7 @@ article.post:hover img {
 
 	#participant_fields,
 	.woocommerce-billing-fields__field-wrapper {
-		border-left: 1px solid var(--p-400);
+		border-left: 1px solid var(--color-primary-400);
 		padding-left: 32px;
 		margin: 24px 0 24px 16px;
 
@@ -1512,15 +1462,15 @@ article.post:hover img {
 
 	.woocommerce form .form-row .input-text,
 	.woocommerce form .form-row select {
-		background-color: var(--p-600);
-		border: 1px solid var(--s-300);
+		background-color: var(--color-primary-600);
+		border: 1px solid var(--color-secondary-300);
 		color: #fff;
 	}
 
 	.select2-container .select2-dropdown,
 	.select2-container .select2-selection {
-		background-color: var(--p-600);
-		border: 1px solid var(--s-300);
+		background-color: var(--color-primary-600);
+		border: 1px solid var(--color-secondary-300);
 		color: #fff;
 	}
 
@@ -1542,7 +1492,7 @@ article.post:hover img {
 
 #customer-type-buttons button {
 	font-size: 16px;
-	background: var(--p-900);
+	background: var(--color-primary-900);
 	color: #fff !important;
 	padding: 16px 24px;
 	display: inline-block;
@@ -1556,32 +1506,32 @@ article.post:hover img {
 }
 
 #customer-type-buttons button:hover {
-	background: var(--s-900);
+	background: var(--color-secondary-900);
 	color: var(--main);
 }
 
 #customer-type-buttons button:focus,
 #customer-type-buttons button:focus-within {
-	background: var(--secondary) !important;
+	background: var(--color-secondary) !important;
 	color: #fff !important;
 }
 
 #customer-type-buttons .active-btn {
-	background: var(--secondary) !important;
+	background: var(--color-secondary) !important;
 	color: #fff !important;
 }
 
 #add_payment_method #payment,
 .woocommerce-cart #payment,
 .woocommerce-checkout #payment {
-	background-color: var(--p-800);
-	border: 1px dashed var(--s-300);
+	background-color: var(--color-primary-800);
+	border: 1px dashed var(--color-secondary-300);
 }
 
 #add_payment_method #payment div.payment_box,
 .woocommerce-cart #payment div.payment_box,
 .woocommerce-checkout #payment div.payment_box {
-	background-color: var(--p-600);
+	background-color: var(--color-primary-600);
 	border-radius: 8px;
 	color: #fff;
 
@@ -1596,7 +1546,7 @@ article.post:hover img {
 #add_payment_method #payment div.payment_box::before,
 .woocommerce-cart #payment div.payment_box::before,
 .woocommerce-checkout #payment div.payment_box::before {
-	border: 1em solid var(--p-600);
+	border: 1em solid var(--color-primary-600);
 	border-right-color: transparent;
 	border-left-color: transparent;
 	border-top-color: transparent;
@@ -1640,15 +1590,15 @@ p {}
 
 .woocommerce-order-overview.woocommerce-thankyou-order-details.order_details {
 	padding: 24px;
-	background-color: var(--p-800);
-	border: 1px dashed var(--s-300);
+	background-color: var(--color-primary-800);
+	border: 1px dashed var(--color-secondary-300);
 	border-radius: 16px;
 }
 
 .woocommerce-table.woocommerce-table--order-details.shop_table.order_details {
 	padding: 24px;
-	background-color: var(--p-800);
-	border: 1px dashed var(--s-300);
+	background-color: var(--color-primary-800);
+	border: 1px dashed var(--color-secondary-300);
 	border-radius: 16px;
 }
 
@@ -1658,8 +1608,8 @@ p {}
 
 .woocommerce .woocommerce-customer-details address {
 	padding: 24px;
-	background-color: var(--p-800);
-	border: 1px dashed var(--s-300);
+	background-color: var(--color-primary-800);
+	border: 1px dashed var(--color-secondary-300);
 	border-radius: 16px;
 	width: max-content;
 
