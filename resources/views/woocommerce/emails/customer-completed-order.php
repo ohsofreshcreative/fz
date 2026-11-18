@@ -28,9 +28,9 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <p>Dzień dobry,</p>
 
-<p>bardzo dziękujemy za rejestrację na konferencję VI Forum Zakażeń, która odbędzie się w dniach 13-15 maja 2026 r. w Hotelu Windsor w Jachrance. <b>Twoje zgłoszenie zostało przyjęte.</b></p>
+<p>bardzo dziękujemy za rejestrację na konferencję VII Forum Zakażeń, która odbędzie się w dniach 10-12 maja 2027 r. w Przystań Hotel & Restaurants w Olsztynie. <b>Twoje zgłoszenie zostało przyjęte.</b></p>
 
-<p>Status Twojej rejestracji na konferencję VI FZ został zmieniony na:
+<p>Status Twojej rejestracji na konferencję VII FZ został zmieniony na:
 
 <span style="color:#36d100;">OPŁACONY</span></p>
 
