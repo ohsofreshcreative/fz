@@ -28,15 +28,6 @@ class HomeAbout extends Block
 
 		$home_about
 			->setLocation('block', '==', 'acf/home-about') // ważne!
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Strona główna - O nas',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- GRUPA #1 ---*/
 			->addTab('Elementy', ['placement' => 'top'])
 			->addGroup('g_about', ['label' => ''])

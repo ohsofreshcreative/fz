@@ -28,15 +28,6 @@ class Workshops extends Block
 
 		$workshops
 			->setLocation('block', '==', 'acf/workshops') // ważne!
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Warsztaty w kameralnym gronie',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- GROUP ---*/
 			->addTab('Elementy', ['placement' => 'top'])
 			->addGroup('g_workshops', ['label' => ''])

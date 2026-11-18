@@ -28,15 +28,6 @@ class Opinion extends Block
 
 		$opinion
 			->setLocation('block', '==', 'acf/opinion') // ważne!
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Opinia',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- GROUP ---*/
 			->addTab('Elementy', ['placement' => 'top'])
 			->addGroup('g_opinion', ['label' => ''])

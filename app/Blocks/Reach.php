@@ -30,15 +30,6 @@ class Reach extends Block
 		$reach
 			->setLocation('block', '==', 'acf/reach') // ważne!
 			/*--- FIELDS ---*/
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Dołącz do nas',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- TAB #1 ---*/
 			->addTab('Dane', ['placement' => 'top'])
 			->addGroup('g_reach_1', ['label' => ''])

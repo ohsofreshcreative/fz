@@ -26,15 +26,6 @@ class TwoColumns extends Block
 
 		$twocolumns
 			->setLocation('block', '==', 'acf/twocolumns') // ważne!
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Dwie kolumny',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- FIELDS ---*/
 			->addTab('Kolumna #1', ['placement' => 'top'])
 			->addGroup('col1', ['label' => ''])

@@ -33,15 +33,6 @@ class PartnersBlock extends Block
 		$PartnersBlock = new FieldsBuilder('partners_block');
 
 		$PartnersBlock
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Partnerzy',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			->addTab('Elementy', ['placement' => 'top'])
 			->addMessage('Edycja', 'Pole edytujemy klikajac w menu panelu administratora "Partnerzy".')
 			/*--- USTAWIENIA BLOKU ---*/

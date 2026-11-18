@@ -33,15 +33,6 @@ class AreaBlock extends Block
 		$areaBlock = new FieldsBuilder('area_block');
 
 		$areaBlock
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Obszar działania',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			->addTab('Elementy', ['placement' => 'top'])
 			->addMessage('Edycja', 'Edytujemy klikajac w menu panelu administratora pole "Obszar działania".')
 			

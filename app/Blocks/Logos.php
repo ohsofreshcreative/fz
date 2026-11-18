@@ -26,15 +26,6 @@ class Logos extends Block
 
 		$logos
 			->setLocation('block', '==', 'acf/logos')
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Logotypy',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			->addTab('Treści', ['placement' => 'top'])
 			->addGroup('g_logos', ['label' => ''])
 			->addText('title', ['label' => 'Tytuł'])

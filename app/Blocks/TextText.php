@@ -28,15 +28,6 @@ class TextText extends Block
 
 		$text_text
 			->setLocation('block', '==', 'acf/text-text') // ważne!
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Tekst - dwie kolumny',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- GRUPA #1 ---*/
 			->addTab('Kolumna #1', ['placement' => 'top'])
 			->addGroup('g1_text_text', ['label' => ''])

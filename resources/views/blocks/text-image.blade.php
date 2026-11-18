@@ -27,7 +27,7 @@ $sectionClass .= ' ' . $background;
 				@if (!empty($g_textimg['image']))
 				<p data-gsap-element="subtitle" class="subtitle-s">{{ $g_textimg['subtitle'] }}</p>
 				@endif
-				<h2 data-gsap-element="header" class="text-white m-header">{{ $g_textimg['title'] }}</h2>
+				<h2 data-gsap-element="header" class="text-white m-header">{!! $g_textimg['title'] !!}</h2>
 
 				<div data-gsap-element="txt" class="__txt text-white">
 					{!! $g_textimg['txt'] !!}

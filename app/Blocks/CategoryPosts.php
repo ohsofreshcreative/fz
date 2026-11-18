@@ -26,15 +26,6 @@ class CategoryPosts extends Block
 
         $categoryPosts
             ->setLocation('block', '==', 'acf/category-posts') // ważne!
-            ->addText('block-title', [
-                'label' => 'Tytuł bloku',
-                'required' => 0,
-            ])
-            ->addAccordion('accordion1', [
-                'label' => 'Baza wiedzy - Ostatnie wpisy',
-                'open' => true,
-                'multi_expand' => true,
-            ])
             /*--- FIELDS ---*/
             ->addTab('Treści', ['placement' => 'top'])
             ->addGroup('posts_settings', ['label' => ''])

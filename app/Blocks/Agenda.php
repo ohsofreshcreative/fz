@@ -28,15 +28,6 @@ class Agenda extends Block
 
         $agenda
             ->setLocation('block', '==', 'acf/agenda')
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Agenda',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- GROUP ---*/
 			->addTab('Elementy', ['placement' => 'top'])
 			->addGroup('g_textimg', ['label' => ''])

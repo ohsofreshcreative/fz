@@ -28,15 +28,6 @@ class ThreeColumns extends Block
 
 		$three_columns
 			->setLocation('block', '==', 'acf/three-columns') // ważne!
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Trzy kolumny',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- GROUP ---*/
 			->addTab('Elementy', ['placement' => 'top'])
 			->addGroup('threecols', ['label' => ''])

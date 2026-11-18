@@ -26,15 +26,6 @@ class Experts extends Block
 
 		$experts
 			->setLocation('block', '==', 'acf/experts') // ważne!
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Eksperci',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- FIELDS ---*/
 			->addTab('Treści', ['placement' => 'top'])
 			->addGroup('g_experts', ['label' => ''])

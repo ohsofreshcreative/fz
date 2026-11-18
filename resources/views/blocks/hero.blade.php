@@ -23,7 +23,7 @@ $sectionClass .= $flip ? ' order-flip' : '';
         <source src="{{ is_array($g_hero['video']) ? ($g_hero['video']['url'] ?? '') : $g_hero['video'] }}"
             type="{{ is_array($g_hero['video']) ? ($g_hero['video']['mime_type'] ?? 'video/mp4') : 'video/mp4' }}">
     </video>
-    <div class="absolute inset-0 bg-black/40 z-10 pointer-events-none"></div>
+    <div class="__overlay absolute inset-0 z-10 pointer-events-none"></div>
     @endif
 
     <div class="__wrapper c-wide grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-20">

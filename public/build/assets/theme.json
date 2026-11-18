@@ -1539,11 +1539,6 @@
           "color": "rgb(var(--s-50))"
         },
         {
-          "name": "Secondary (100)",
-          "slug": "secondary-100",
-          "color": "rgb(var(--s-100))"
-        },
-        {
           "name": "Secondary (200)",
           "slug": "secondary-200",
           "color": "rgb(var(--s-200))"
@@ -1564,11 +1559,6 @@
           "color": "rgb(var(--s-500))"
         },
         {
-          "name": "Secondary (600)",
-          "slug": "secondary-600",
-          "color": "rgb(var(--s-600))"
-        },
-        {
           "name": "Secondary (700)",
           "slug": "secondary-700",
           "color": "rgb(var(--s-700))"
@@ -1584,11 +1574,6 @@
           "color": "rgb(var(--s-900))"
         },
         {
-          "name": "Secondary (Dark)",
-          "slug": "secondary-dark",
-          "color": "rgb(var(--s-dark))"
-        },
-        {
           "name": "Gray",
           "slug": "gray",
           "color": "var(--gray)"
@@ -1597,26 +1582,6 @@
           "name": "Page",
           "slug": "page",
           "color": "var(--bg)"
-        },
-        {
-          "name": "Primary (Light)",
-          "slug": "primary-light",
-          "color": "var(--color-primary-200)"
-        },
-        {
-          "name": "Primary (Lighter)",
-          "slug": "primary-lighter",
-          "color": "var(--color-primary-100)"
-        },
-        {
-          "name": "Secondary (Light)",
-          "slug": "secondary-light",
-          "color": "var(--color-secondary-200)"
-        },
-        {
-          "name": "Secondary (Lighter)",
-          "slug": "secondary-lighter",
-          "color": "var(--color-secondary-50)"
         }
       ]
     },

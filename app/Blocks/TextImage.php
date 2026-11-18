@@ -28,15 +28,6 @@ class TextImage extends Block
 
 		$text_image
 			->setLocation('block', '==', 'acf/text-image') // ważne!
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Treść oraz zdjęcie',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- GROUP ---*/
 			->addTab('Elementy', ['placement' => 'top'])
 			->addGroup('g_textimg', ['label' => ''])

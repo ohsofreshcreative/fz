@@ -28,15 +28,6 @@ class Text extends Block
 
 		$text
 			->setLocation('block', '==', 'acf/text') // ważne!
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Nagłówek i opis',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- GROUP ---*/
 			->addTab('Elementy', ['placement' => 'top'])
 			->addGroup('g_text', ['label' => ''])

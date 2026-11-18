@@ -26,15 +26,6 @@ class History extends Block
 
 		$history
 			->setLocation('block', '==', 'acf/history') // ważne!
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Historia',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- FIELDS ---*/
 			->addTab('Nagłówek', ['placement' => 'top'])
 			->addText('subtitle', [

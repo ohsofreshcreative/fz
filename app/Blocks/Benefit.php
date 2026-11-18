@@ -28,15 +28,6 @@ class Benefit extends Block
 
 		$benefit
 			->setLocation('block', '==', 'acf/benefit') // ważne!
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Treść oraz zdjęcie + lista korzyści',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- GROUP ---*/
 			->addTab('Elementy', ['placement' => 'top'])
 			->addGroup('g_benefit', ['label' => ''])

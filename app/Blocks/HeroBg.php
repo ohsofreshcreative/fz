@@ -26,15 +26,6 @@ class HeroBg extends Block
 
 		$hero_bg
 			->setLocation('block', '==', 'acf/hero-bg') // ważne!
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Hero - Realizacje',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			->addTab('Treść', ['placement' => 'top']) 
 			->addGroup('g_herobg', ['label' => 'Hero - Tło'
 			])

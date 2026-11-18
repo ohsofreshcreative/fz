@@ -26,15 +26,6 @@ class HeroNews extends Block
 
 		$hero_news
 			->setLocation('block', '==', 'acf/hero-news') // ważne!
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Hero - Newsletter',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			->addTab('Treść', ['placement' => 'top'])
 			->addGroup('g_hero_news', ['label' => 'Hero - Newsletter'])
 			->addImage('image', [

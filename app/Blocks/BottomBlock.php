@@ -33,15 +33,6 @@ class BottomBlock extends Block
 		$bottomBlock = new FieldsBuilder('bottom_block');
 
 		$bottomBlock
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Wezwanie do działania - Stopka',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			->addTab('Elementy', ['placement' => 'top'])
 			->addMessage('Edycja', 'Pole edytujemy klikajac w menu panelu administratora "Wezwanie do działania".')
 			

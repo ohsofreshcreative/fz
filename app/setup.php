@@ -34,6 +34,23 @@ add_filter('mce_css', function ($mce_css) {
 	return $mce_css ? "{$mce_css},{$style}" : $style;
 });
 
+/*--- ACF BLOCK EXPANDED EDITOR ---*/
+
+add_filter('acf/register_block_type_args', function ($block) {
+	if (! str_starts_with($block['name'] ?? '', 'acf/')) {
+		return $block;
+	}
+
+	$block['acf_block_version'] = 3;
+	$block['api_version'] = 3;
+	$block['expanded_editor_buttons'] = true;
+	$block['hide_fields_in_sidebar'] = true;
+	$block['auto_inline_editing'] = false;
+	$block['mode'] = 'preview';
+
+	return $block;
+});
+
 /**
  * Inject scripts into the block editor.
  *
