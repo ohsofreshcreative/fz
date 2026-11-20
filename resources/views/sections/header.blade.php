@@ -2,12 +2,14 @@
 use App\Walkers\DropdownWalker;
 use App\Walkers\MobileDropdownWalker;
 
-// Menu podglądu: tryb "Już wkrótce" WooCommerce + poprawny prywatny link (?woo-share) lub cookie woo-share.
+// Menu strony "Już wkrótce": pokazywane tylko odwiedzającym, którym WooCommerce wyświetla landing.
+// Admin / shop manager oraz osoby z prywatnym linkiem (?woo-share lub cookie woo-share) widzą menu główne.
 $menuLocation = 'primary_navigation';
-if (get_option('woocommerce_coming_soon') === 'yes' && has_nav_menu('preview_navigation')) {
+if (get_option('woocommerce_coming_soon') === 'yes' && has_nav_menu('preview_navigation') && !current_user_can('manage_woocommerce')) {
 	$shareKey = get_option('woocommerce_share_key');
 	$visitorKey = $_GET['woo-share'] ?? $_COOKIE['woo-share'] ?? null;
-	if ($shareKey && $visitorKey === $shareKey) {
+	$hasPrivateLink = get_option('woocommerce_private_link') === 'yes' && $shareKey && $visitorKey === $shareKey;
+	if (!$hasPrivateLink) {
 		$menuLocation = 'preview_navigation';
 	}
 }
