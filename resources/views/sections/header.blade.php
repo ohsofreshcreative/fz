@@ -1,6 +1,16 @@
 @php
 use App\Walkers\DropdownWalker;
 use App\Walkers\MobileDropdownWalker;
+
+// Menu podglądu: tryb "Już wkrótce" WooCommerce + poprawny prywatny link (?woo-share) lub cookie woo-share.
+$menuLocation = 'primary_navigation';
+if (get_option('woocommerce_coming_soon') === 'yes' && has_nav_menu('preview_navigation')) {
+	$shareKey = get_option('woocommerce_share_key');
+	$visitorKey = $_GET['woo-share'] ?? $_COOKIE['woo-share'] ?? null;
+	if ($shareKey && $visitorKey === $shareKey) {
+		$menuLocation = 'preview_navigation';
+	}
+}
 @endphp
 
 <header x-data="{ mobileOpen: false }" class="relative top-0 z-50 bg-white masthead fixed-top">
@@ -14,10 +24,10 @@ use App\Walkers\MobileDropdownWalker;
 			<span class="text-xl font-bold">{{ $siteName }}</span>
 			@endif
 		</a>
-		@if (has_nav_menu('primary_navigation'))
-		<nav class="ml-6 lg:ml-15 nav-primary w-full" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}">
+		@if (has_nav_menu($menuLocation))
+		<nav class="ml-6 lg:ml-15 nav-primary w-full" aria-label="{{ wp_get_nav_menu_name($menuLocation) }}">
 			{!! wp_nav_menu([
-			'theme_location' => 'primary_navigation',
+			'theme_location' => $menuLocation,
 			'menu_class' => 'nav flex gap-x-3 lg:gap-x-6 text-lg font-medium justify-center items-center text-white [&a]:text-white', 
 			'container' => false,
 			'echo' => false,
@@ -85,10 +95,10 @@ use App\Walkers\MobileDropdownWalker;
 				</button>
 			</div>
 
-			@if (has_nav_menu('primary_navigation'))
+			@if (has_nav_menu($menuLocation))
 			<nav class="flex flex-col space-y-1 mt-20">
 				{!! wp_nav_menu([
-				'theme_location' => 'primary_navigation',
+				'theme_location' => $menuLocation,
 				'menu_class' => 'nav-mobile flex flex-col space-y-2',
 				'container' => false,
 				'echo' => false,

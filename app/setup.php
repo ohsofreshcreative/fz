@@ -112,6 +112,7 @@ add_action('after_setup_theme', function () {
 	 */
 	register_nav_menus([
 		'primary_navigation' => __('Primary Navigation', 'sage'),
+		'preview_navigation' => __('Nawigacja podglądu (prywatny link WooCommerce)', 'sage'),
 	]);
 
 	/**
