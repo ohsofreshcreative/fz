@@ -11,8 +11,15 @@ $sectionClass .= $flip ? ' order-flip' : '';
     class="hero bg-secondary relative -menu-pt min-h-[85svh] {{ $sectionClass }} {{ $section_class }}">
 
     @if (!empty($g_hero['use_video']) && !empty($g_hero['video']))
+    @php $mobileImg = $g_hero['image'] ?? null; if (empty($mobileImg['url'])) $mobileImg = $g_hero['video_poster'] ?? null; @endphp
+    @if (!empty($mobileImg['url']))
+    <img
+        class="md:hidden absolute inset-0 w-full h-full object-cover z-0"
+        src="{{ $mobileImg['url'] }}"
+        alt="{{ $mobileImg['alt'] ?? '' }}">
+    @endif
     <video
-        class="absolute inset-0 w-full h-full object-cover z-0"
+        class="hidden md:block absolute inset-0 w-full h-full object-cover z-0"
         autoplay
         muted
         loop
