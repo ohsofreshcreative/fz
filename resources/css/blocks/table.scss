@@ -1,5 +1,14 @@
 .b-table {
   .__table {
+    p {
+      overflow-wrap: anywhere;
+    }
+    @media (max-width: 767px) {
+      .__row p:last-child {
+        text-align: right;
+      }
+    }
+
     .__row:first-child {
       background-color: var(--color-secondary-200);
       p {
