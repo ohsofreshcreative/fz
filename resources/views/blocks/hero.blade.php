@@ -8,7 +8,7 @@ $sectionClass .= $flip ? ' order-flip' : '';
 <section
     data-gsap-anim="section"
     @if(!empty($section_id)) id="{{ $section_id }}" @endif
-    class="hero bg-secondary relative -menu-pt min-h-[85svh] {{ $sectionClass }} {{ $section_class }}">
+    class="hero bg-secondary relative -menu-pt min-h-[85svh] flex flex-col justify-center {{ $sectionClass }} {{ $section_class }}">
 
     @if (!empty($g_hero['use_video']) && !empty($g_hero['video']))
     @php $mobileImg = $g_hero['image'] ?? null; if (empty($mobileImg['url'])) $mobileImg = $g_hero['video_poster'] ?? null; @endphp
@@ -39,8 +39,8 @@ $sectionClass .= $flip ? ' order-flip' : '';
     <div class="__overlay absolute inset-0 z-10 pointer-events-none"></div>
     @endif
 
-    <div class="__wrapper c-wide grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-20">
-        <div class="__content pt-20 pb-10 md:py-30">
+    <div class="__wrapper c-wide w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-20">
+        <div class="__content py-10 md:py-20">
             <h2 data-gsap-element="header" class=" text-white">
                 {{ $g_hero['title'] }}
             </h2>

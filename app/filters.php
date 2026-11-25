@@ -137,3 +137,13 @@ add_filter('gettext', function ($translated, $text, $domain) {
 add_filter('acf/blocks/default_expanded_editor_button_text', function () {
     return 'Edytuj sekcję';
 });
+
+/*--- THANK YOU PAGE: REMOVE ORDER ACTIONS (Zapłać / Anuluj) ---*/
+
+add_filter('woocommerce_my_account_my_orders_actions', function ($actions) {
+    if (function_exists('is_order_received_page') && is_order_received_page()) {
+        return [];
+    }
+
+    return $actions;
+}, 99);
